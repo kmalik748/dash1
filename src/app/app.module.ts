@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import { AdminDashboardComponent } from './layouts/admin-dashboard/admin-dashboard.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
