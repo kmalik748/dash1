@@ -4,7 +4,7 @@ import {AdminDashboardComponent} from "./layouts/admin-dashboard/admin-dashboard
 import {AuthLayoutComponent} from "./layouts/auth-layout/auth-layout.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', pathMatch: 'full', redirectTo: 'auth' },
   {
     path: 'auth',
     component: AuthLayoutComponent,
