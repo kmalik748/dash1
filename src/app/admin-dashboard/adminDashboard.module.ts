@@ -6,12 +6,15 @@ import {SharedModule} from "../shared/shared.module";
 import { TestComponent } from './test/test.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { AddUsersComponent } from './add-users/add-users.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', redirectTo: 'users/all-users' },
   { path: 'users/all-users', component: AllUsersComponent },
   { path: 'users/add-user', component: AddUsersComponent },
+  { path: 'users/edit/:id', component: AddUsersComponent },
   { path: 'test', component: TestComponent }
 ];
 
@@ -20,13 +23,15 @@ export const routes: Routes = [
     HomeComponent,
     TestComponent,
     AllUsersComponent,
-    AddUsersComponent
+    AddUsersComponent,
+    EditUserComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    SharedModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        SharedModule,
+        ReactiveFormsModule
+    ],
   exports: [
     RouterModule
   ]

@@ -9,6 +9,7 @@ import {Observable, Subscribable} from "rxjs";
 })
 export class AuthService {
   private signUpAPI = environment.API_PATH+'auth/signup.php';
+  private emailAPI = environment.API_PATH+'auth/checkEmail.php';
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +30,14 @@ export class AuthService {
         gender: data.get('gender')?.value,
         userType: data.get('userType')?.value
       }
+    );
+  }
+
+
+  checkIfEmailExists(email: string): Observable<any>{
+    return this.http.post(
+      this.emailAPI,
+      {email: email}
     );
   }
 }

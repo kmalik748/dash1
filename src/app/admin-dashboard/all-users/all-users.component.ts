@@ -13,24 +13,49 @@ export class AllUsersComponent implements OnInit {
 
   allUsers: UsersDetailsInterface[];
   loading: boolean = false;
+  deleteUserId = 0;
+  proceedDelete = false;
 
   constructor(private userService: UsersService) {
     this.allUsers = [];
+    this.getAllUsers();
   }
 
   ngOnInit(): void {
+
+  }
+
+  getAllUsers(): void{
     this.loading = true;
     this.userService.getAllUsers().subscribe(data => {
-      // data.forEach(value => {
-      //   value = value as UsersDetailsInterface;
-      //   // console.log(value.id);
-      // });
       this.allUsers = data;
       this.loading = false;
 
       $(function () {
         $("#example1").DataTable();
       });
+    });
+  }
+
+  setValue(id: number){
+    this.deleteUserId = id;
+  }
+
+  deleteUser(){
+    this.proceedDelete = true;
+    this.userService.deleteUser(this.deleteUserId).subscribe(data=>{
+      if(data.Result==true){
+        this.deleteUserId = 0;
+        this.proceedDelete = false;
+        $('#delete_user_modal').modal('toggle');
+        this.getAllUsers();
+        $(document).Toasts('create', {
+          class: 'bg-danger',
+          title: 'User Deleted!',
+          subtitle: 'Just Now',
+          body: 'User Account was deleted successfully'
+        });
+      }
     });
   }
 

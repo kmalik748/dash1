@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MustMatch} from "./matchPassword";
 import {Router} from "@angular/router";
-import {AuthService} from "../auth-service.service";
+import {AuthService} from "../../auth/auth-service.service";
+import {MustMatch} from "../../auth/register/matchPassword";
 declare var $: any;
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
-export class RegisterComponent implements OnInit {
-
+export class EditUserComponent implements OnInit {
   signupForm: FormGroup;
   rqstSent = false;
 
@@ -59,12 +58,12 @@ export class RegisterComponent implements OnInit {
 
   submitSignup(){
     this.rqstSent = true;
-      this.authService.signUp(this.signupForm).subscribe(data => {
-        console.log(data);
-        this.notificationSuccessRegister();
-        this.router.navigate(['/']);
-        this.rqstSent = false;
-      });
+    this.authService.signUp(this.signupForm).subscribe(data => {
+      console.log(data);
+      this.notificationSuccessRegister();
+      this.rqstSent = false;
+      this.signupForm.reset();
+    });
   }
 
   notificationSuccessRegister(){
@@ -72,8 +71,7 @@ export class RegisterComponent implements OnInit {
       class: 'bg-success',
       title: 'Account Created!',
       subtitle: 'Just Now',
-      body: 'Account was created successfully, please login to continue...'
+      body: 'Account was created successfully'
     });
   }
-
 }

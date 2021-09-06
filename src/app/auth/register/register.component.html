@@ -128,10 +128,14 @@
                            formControlName="email" [ngClass]="{'is-invalid': signupForm.get('email')?.errors
                            && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty),
                    'is-valid': !signupForm.get('email')?.errors && signupForm.get('email')?.touched}">
-                    <span class="input_err_msg"
-                          *ngIf="signupForm.get('email')?.errors &&
-                           (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
+                    <span *ngIf="signupForm.get('email')?.errors &&
+                    (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
+                      <span class="input_err_msg" *ngIf="signupForm.get('email')?.hasError('required')">
                       Provide a valid email
+                    </span>
+                    <span class="input_err_msg" *ngIf="signupForm.get('email')?.hasError('isEmailUnique')">
+                      Email already exists
+                    </span>
                     </span>
                   </div>
                 </div>
@@ -211,8 +215,6 @@
                 </button>
               </div>
             </form>
-
-
 
             <a routerLink="/auth" class="text-center">I already have a membership</a>
           </div>
