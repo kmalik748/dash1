@@ -19,4 +19,13 @@ if(!$con){
     json_encode(array("Message"=>"Connection to database failed!")); exit(); die();
 }
 
-sleep(3);
+//sleep(3);
+
+
+define('SECRET_KEY','Super-Secret-Key@@@@@@');  // secret key can be a random string and keep in secret from anyone
+define('ALGORITHM','HS256');   // Algorithm used to sign the token
+$iat = time(); // time of token issued at
+$nbf = $iat + 0; //not before in seconds
+$exp = $iat + 3600; // expire time of token in seconds
+
+

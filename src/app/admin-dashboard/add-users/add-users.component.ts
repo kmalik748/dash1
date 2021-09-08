@@ -21,7 +21,7 @@ export class AddUsersComponent implements OnInit {
       firstname: ['', Validators.required],
       middlename: [''],
       lastname: [''],
-      dob: ['', Validators.min(1)],
+      dob: ['', Validators.required],
       phone: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],

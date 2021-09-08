@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Observable, Subscribable} from "rxjs";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,12 @@ import {Observable, Subscribable} from "rxjs";
 export class AuthService {
   private signUpAPI = environment.API_PATH+'auth/signup.php';
   private emailAPI = environment.API_PATH+'auth/checkEmail.php';
+  private loginAPI = environment.API_PATH+'auth/login.php';
+  private encodeAPI = environment.API_PATH+'auth/encode.php';
+  decodeAPI = environment.API_PATH+'auth/decode.php';
+  authTokenName = 'token';
+  isLoggedIn = false;
+  userName = "";
 
   constructor(private http: HttpClient) { }
 
@@ -40,4 +46,20 @@ export class AuthService {
       {email: email}
     );
   }
+
+  login(uname: string, pass: string): Observable<any>{
+    return this.http.post(
+      this.loginAPI,
+      {email: uname, pass: pass}
+    );
+  }
+
+  decodeToken(): Observable<any>{
+    return this.http.post(
+      this.decodeAPI,
+      {key: localStorage.getItem(this.authTokenName)}
+    );
+  }
+
+
 }

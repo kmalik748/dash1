@@ -7,12 +7,15 @@ import {SharedModule} from "./shared/shared.module";
 import { AdminDashboardComponent } from './layouts/admin-dashboard/admin-dashboard.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {HttpClientModule} from "@angular/common/http";
+import {AuthGuard} from "./guards/auth.guard";
+import { PatientDashboardLayoutComponent } from './layouts/patient-dashboard-layout/patient-dashboard-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashboardComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    PatientDashboardLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
     SharedModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

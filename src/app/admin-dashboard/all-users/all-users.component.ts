@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersDetailsInterface} from "../../dataTypes/users.interface";
 import {UsersService} from "../services/users.service";
+import {Router} from "@angular/router";
 declare var $: any;
 
 
@@ -16,7 +17,8 @@ export class AllUsersComponent implements OnInit {
   deleteUserId = 0;
   proceedDelete = false;
 
-  constructor(private userService: UsersService) {
+  constructor(private userService: UsersService,
+              private router: Router) {
     this.allUsers = [];
     this.getAllUsers();
   }
@@ -48,6 +50,7 @@ export class AllUsersComponent implements OnInit {
         this.deleteUserId = 0;
         this.proceedDelete = false;
         $('#delete_user_modal').modal('toggle');
+        $('#example1_wrapper').remove();
         this.getAllUsers();
         $(document).Toasts('create', {
           class: 'bg-danger',

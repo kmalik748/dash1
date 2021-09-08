@@ -60,13 +60,10 @@
                 <div class="form-group">
                   <label>Date of birth</label>
                   <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"
+                    <input type="date" class="form-control"
                            formControlName="dob" [ngClass]="{'is-invalid': signupForm.get('dob')?.errors
                            && (signupForm.get('dob')?.touched || signupForm.get('dob')?.dirty),
                    'is-valid': !signupForm.get('dob')?.errors && signupForm.get('dob')?.touched}">
-                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
                   </div>
                   <span class="input_err_msg"
                         *ngIf="signupForm.get('dob')?.errors &&
@@ -190,15 +187,15 @@
                   <label>Gender</label>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-outline-primary active">
-                      <input type="radio" formControlName="gender" id="option_b1" autocomplete="off" checked="">
+                      <input type="radio" formControlName="gender" value="Male" autocomplete="off" checked="">
                       <i class="fas fa-male"></i> Male
                     </label>
                     <label class="btn btn-outline-primary">
-                      <input type="radio" formControlName="gender" id="option_b2" autocomplete="off">
+                      <input type="radio" formControlName="gender" value="Female" autocomplete="off">
                       <i class="fas fa-female"></i> Female
                     </label>
                     <label class="btn btn-outline-primary">
-                      <input type="radio" formControlName="gender" id="option_b3" autocomplete="off">
+                      <input type="radio" formControlName="gender" value="Other" autocomplete="off">
                       <i class="fas fa-transgender"></i> Other
                     </label>
                   </div>
@@ -209,11 +206,11 @@
                   <label>User is a</label>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-outline-info active">
-                      <input type="radio" formControlName="userType" autocomplete="off" checked="">
+                      <input type="radio" formControlName="userType" value="Doctor" autocomplete="off" checked="">
                       <i class="fas fa-user-md"></i> Doctor
                     </label>
                     <label class="btn btn-outline-info">
-                      <input type="radio" formControlName="userType" autocomplete="off">
+                      <input type="radio" formControlName="userType" value="Patent" autocomplete="off">
                       <i class="fas fa-procedures"></i> Patent
                     </label>
                   </div>

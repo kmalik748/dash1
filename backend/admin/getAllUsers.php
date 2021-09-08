@@ -13,7 +13,8 @@ $sql = "SELECT
        state,
        country,
        email,
-       phone_number
+       phone_number,
+       userType
        FROM users";
 $res = mysqli_query($con, $sql);
 if(mysqli_num_rows($res)){
