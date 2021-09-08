@@ -23,7 +23,7 @@
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-8 col-xl-5">
         <div class="info-box w-100 p-2 shadow ">
-          <form (ngSubmit)="submitSignup()" [formGroup]="signupForm">
+          <form (ngSubmit)="submitEdit()" [formGroup]="signupForm">
             <div class="row">
               <div class="col-sm-4">
                 <!-- text input -->
@@ -60,13 +60,10 @@
                 <div class="form-group">
                   <label>Date of birth</label>
                   <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"
+                    <input type="date" class="form-control" data-target="#reservationdate"
                            formControlName="dob" [ngClass]="{'is-invalid': signupForm.get('dob')?.errors
                            && (signupForm.get('dob')?.touched || signupForm.get('dob')?.dirty),
                    'is-valid': !signupForm.get('dob')?.errors && signupForm.get('dob')?.touched}">
-                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
                   </div>
                   <span class="input_err_msg"
                         *ngIf="signupForm.get('dob')?.errors &&
@@ -141,7 +138,7 @@
                   <input type="text" class="form-control" placeholder="user@email.com"
                          formControlName="email" [ngClass]="{'is-invalid': signupForm.get('email')?.errors
                            && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty),
-                   'is-valid': !signupForm.get('email')?.errors && signupForm.get('email')?.touched}">
+                   'is-valid': !signupForm.get('email')?.errors && signupForm.get('email')?.touched}" >
                   <span *ngIf="signupForm.get('email')?.errors &&
                     (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
                       <span class="input_err_msg" *ngIf="signupForm.get('email')?.hasError('required')">
@@ -189,16 +186,16 @@
                 <div class="form-group d-flex flex-column">
                   <label>Gender</label>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary active">
-                      <input type="radio" formControlName="gender" id="option_b1" autocomplete="off" checked="">
+                    <label class="btn btn-outline-primary" [ngClass]="{'active': checkMaleGender()}">
+                      <input type="radio" formControlName="gender" value="Male" autocomplete="off" checked="">
                       <i class="fas fa-male"></i> Male
                     </label>
-                    <label class="btn btn-outline-primary">
-                      <input type="radio" formControlName="gender" id="option_b2" autocomplete="off">
+                    <label class="btn btn-outline-primary" [ngClass]="{'active': checkFemaleGender()}">
+                      <input type="radio" formControlName="gender" value="Female" autocomplete="off">
                       <i class="fas fa-female"></i> Female
                     </label>
-                    <label class="btn btn-outline-primary">
-                      <input type="radio" formControlName="gender" id="option_b3" autocomplete="off">
+                    <label class="btn btn-outline-primary" [ngClass]="{'active': checkOtherGender()}">
+                      <input type="radio" formControlName="gender" value="Other" autocomplete="off">
                       <i class="fas fa-transgender"></i> Other
                     </label>
                   </div>
@@ -208,13 +205,13 @@
                 <div class="form-group d-flex flex-column">
                   <label>User is a</label>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-info active">
-                      <input type="radio" formControlName="userType" autocomplete="off" checked="">
+                    <label class="btn btn-outline-info" [ngClass]="{'active': userTypeDoctor()}">
+                      <input type="radio" formControlName="userType" value="Doctor" autocomplete="off" checked="">
                       <i class="fas fa-user-md"></i> Doctor
                     </label>
-                    <label class="btn btn-outline-info">
-                      <input type="radio" formControlName="userType" autocomplete="off">
-                      <i class="fas fa-procedures"></i> Patent
+                    <label class="btn btn-outline-info" [ngClass]="{'active': userTypePatient()}">
+                      <input type="radio" formControlName="userType" value="Patient" autocomplete="off">
+                      <i class="fas fa-procedures"></i> Patient
                     </label>
                   </div>
                 </div>
@@ -224,8 +221,8 @@
               <app-loader *ngIf="rqstSent"></app-loader>
               <button type="submit" class="btn btn-block btn-primary" [disabled]="!signupForm.valid"
                       *ngIf="!rqstSent">
-                <i class="fas fa-user-plus mr-2"></i>
-                Add User
+                <i class="fas fa-user-edit mr-2"></i>
+                Update User
               </button>
             </div>
           </form>

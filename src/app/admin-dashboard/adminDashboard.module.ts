@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'users', redirectTo: 'users/all-users' },
   { path: 'users/all-users', component: AllUsersComponent },
   { path: 'users/add-user', component: AddUsersComponent },
-  { path: 'users/edit/:id', component: AddUsersComponent },
+  { path: 'users/edit/:id', component: EditUserComponent },
   { path: 'test', component: TestComponent }
 ];
 

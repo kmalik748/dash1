@@ -9,5 +9,7 @@ export interface UsersDetailsInterface {
   state: string,
   country: string,
   email: string,
-  phone_number: string
+  phone_number: string,
+  password?: string
+  userType: string
 }

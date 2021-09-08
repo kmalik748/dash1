@@ -12,7 +12,7 @@ export class AuthService {
   private emailAPI = environment.API_PATH+'auth/checkEmail.php';
   private loginAPI = environment.API_PATH+'auth/login.php';
   private encodeAPI = environment.API_PATH+'auth/encode.php';
-  decodeAPI = environment.API_PATH+'auth/decode.php';
+  validate_sessionAPI = environment.API_PATH+'auth/validate_session.php';
   authTokenName = 'token';
   isLoggedIn = false;
   userName = "";
@@ -56,7 +56,7 @@ export class AuthService {
 
   decodeToken(): Observable<any>{
     return this.http.post(
-      this.decodeAPI,
+      this.validate_sessionAPI,
       {key: localStorage.getItem(this.authTokenName)}
     );
   }
