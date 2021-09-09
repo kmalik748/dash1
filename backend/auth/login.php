@@ -30,7 +30,7 @@ if(mysqli_num_rows($r)){
   $output["userType"] = $row["userType"];
   $data = $row;
   if($row["userType"]=="Admin") $output["redirectTo"] = "adminArea";
-  if($row["userType"]=="Patient") $output["patient"] = "patientArea";
+  if($row["userType"]=="Patient") $output["redirectTo"] = "patientArea";
 }
 
 

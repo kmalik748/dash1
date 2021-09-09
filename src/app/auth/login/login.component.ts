@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
             subtitle: 'Just Now',
             body: 'Log in Successful!<br> Your Account Type is: <b>'+data.userType+'</b>'
           });
+          console.log("Path is",  data);
           this.router.navigate([data.redirectTo]).then(r => {});
         }else{
           $(document).Toasts('create', {
