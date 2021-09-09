@@ -18,8 +18,11 @@ export class FindDoctorComponent implements OnInit {
     this.stepper = new Stepper(<Element>document.querySelector('.bs-stepper'))
   }
 
-  stepTwo(): void{
+  stepNext(): void{
     this.stepper.next()
+  }
+  stepBack(): void{
+    this.stepper.previous()
   }
 
 }
