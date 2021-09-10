@@ -1,8 +1,11 @@
 <?php
+
+header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+header("Access-Control-Allow-Headers : Content-Type");
+header("Access-Control-Allow-Methods : POST, OPTIONS, GET");
 
 function secure_parm($parm){
   return $parm;
@@ -12,6 +15,11 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "project_aivizo";
+
+$servername = "server127.web-hosting.com";
+$username = "turkvjwp_fingerprinttest";
+$password = "fingerprinttest";
+$dbname = "turkvjwp_aivizo";
 
 
 $con = mysqli_connect($servername, $username, $password, $dbname);

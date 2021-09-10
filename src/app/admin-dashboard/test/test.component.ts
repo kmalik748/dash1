@@ -13,7 +13,7 @@ export class TestComponent implements OnInit {
               private adminService: UsersService) {
     this.adminService.getAllUsers().subscribe(
       data=>{
-        this.router.navigate(['adminArea']);
+        // this.router.navigate(['adminArea']);
       }
     );
   }

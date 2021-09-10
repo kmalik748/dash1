@@ -5,16 +5,19 @@ import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { FindDoctorComponent } from './find-doctor/find-doctor.component';
+import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 
 export const routes: Routes = [
   { path: '', component: PatientHomeComponent },
-  { path: 'find-doctor', component: FindDoctorComponent }
+  { path: 'find-doctor', component: FindDoctorComponent },
+  { path: 'my-appointments', component: MyAppointmentsComponent }
 ];
 
 @NgModule({
   declarations: [
     PatientHomeComponent,
-    FindDoctorComponent
+    FindDoctorComponent,
+    MyAppointmentsComponent
   ],
   imports: [
     CommonModule,
