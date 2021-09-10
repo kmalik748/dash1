@@ -87,6 +87,9 @@ export class EditUserComponent implements OnInit, OnDestroy {
   userTypeDoctor(): boolean{
     return this.signupForm.get('userType')?.value==='Doctor';
   }
+  userTypeAdmin(): boolean{
+    return this.signupForm.get('userType')?.value==='Admin';
+  }
 
 
 

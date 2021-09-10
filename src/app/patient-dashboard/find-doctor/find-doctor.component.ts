@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import Stepper from "bs-stepper";
-declare var $: any;
 
 
 @Component({
