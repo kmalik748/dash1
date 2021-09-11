@@ -11,7 +11,9 @@ $qualification = secure_parm($data->qualification);
 $fees = secure_parm($data->fees);
 $availability = secure_parm($data->availability);
 
-$output["Data"] = $availability;
+$dates = explode("-",$availability);
+
+$output["Data"] = json_encode($dates);
 
 //$sql = "UPDATE doctors SET specialty='$firstname', qualification='$middlename', last_name='$lastname',
 //        gender='$gender', dob='$dob', city='$city', country='$country', phone_number='$phone',
