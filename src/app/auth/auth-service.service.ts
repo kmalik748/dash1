@@ -61,5 +61,12 @@ export class AuthService {
     );
   }
 
+  getCurrentUserID(): Number | any{
+    this.decodeToken().subscribe(
+      data=>{
+        return data.data.id ? +data.data.id : null;
+      }
+    );
+  }
 
 }

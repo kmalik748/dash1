@@ -26,65 +26,69 @@
         </div>
         <div class="card-body">
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Speciality</label>
-                <input type="text" class="form-control" placeholder="Skin Specialist">
+          <form [formGroup]="form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Speciality</label>
+                  <input type="text" class="form-control" placeholder="Skin Specialist" formControlName="speciality">
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Qualification</label>
-                <input type="text" class="form-control" placeholder="M.B.B.S, F.C.P.S">
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Availability:</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-clock"></i></span>
-                  </div>
-                  <input type="text" class="form-control float-right" id="reservationtime" #date>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Qualification</label>
+                  <input type="text" class="form-control" placeholder="M.B.B.S, F.C.P.S" formControlName="qualification">
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Fees</label>
-                <input type="number" class="form-control" placeholder="Fees">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Availability:</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-clock"></i></span>
+                    </div>
+                    <input type="text" class="form-control float-right" id="reservationtime"
+                           #availability formControlName="availability" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Fees</label>
+                  <input type="number" class="form-control" placeholder="Fees" formControlName="fees">
+                </div>
               </div>
             </div>
-          </div>
 
-          <div [formGroup]="form">
-            <label>Enter Tags, relevant to your profession</label>
-            <div class="editor-tag" (click)="focusTagInput()">
+            <div>
+              <label>Enter Tags, relevant to your profession</label>
+              <div class="editor-tag" (click)="focusTagInput()">
               <span class="tag-item" *ngFor="let tag of tags">
                 {{tag}}
                 <span class="remove-tag" (click)="removeTag(tag)">×</span>
               </span>
-              <input
-                placeholder="Comma Separated words"
-                #tagInput type="text"
-                class="input-tag"
-                (keyup)="onKeyUp($event)"
-                formControlName="tag">
+                <input
+                  placeholder="Comma Separated words"
+                  #tagInput type="text"
+                  class="input-tag"
+                  (keyup)="onKeyUp($event)"
+                  formControlName="tag">
+              </div>
             </div>
-          </div>
 
-          <div class="row justify-content-center mt-3">
-            <div class="col-md-8">
-              <button class="btn btn-primary w-100">
-                <i class="fas fa-save mr-2"></i>
-                Save Changes
-              </button>
+            <div class="row justify-content-center mt-5">
+              <div class="col-md-8">
+                <button class="btn btn-primary w-100" (click)="submitRequest()">
+                  <i class="fas fa-save mr-2"></i>
+                  Save Changes
+                </button>
+              </div>
             </div>
-          </div>
+
+          </form>
 
         </div>
         <div class="card-footer">

@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { find, get, pull } from "lodash";
+import {DoctorsService} from "../services/doctors.service";
 declare var $: any;
 
 @Component({
@@ -10,25 +11,24 @@ declare var $: any;
 })
 export class ProfileSettingsComponent implements OnInit {
 
-  data: any;
-
 
   @ViewChild('tagInput') tagInputRef: ElementRef | any;
+  @ViewChild('availability') availability: ElementRef | any;
   tags: string[] = ['Asthma', 'Blood Pressure', 'Corona-Virus Treatment', 'Diabetes'];
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private docService: DoctorsService) {
 
     this.form = this.fb.group({
+      speciality: [''],
+      qualification: [''],
+      availability: [''],
+      fees: [''],
       tag: [undefined],
     });
-    // this.tagInputRef = "";
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      tag: [undefined],
-    });
     //Date range picker with time picker
     $('#reservationtime').daterangepicker({
       timePicker: true,
@@ -74,6 +74,14 @@ export class ProfileSettingsComponent implements OnInit {
     }
   }
 
+  submitRequest(): void{
+    console.log(this.tags);
+    this.docService.updateData(this.form, this.availability.nativeElement.value, this.tags).subscribe(
+      data=>{
+        console.log(data);
+      }
+    );
+  }
 
 
 }
