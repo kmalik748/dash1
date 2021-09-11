@@ -9,19 +9,22 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "./guards/auth.guard";
 import { PatientDashboardLayoutComponent } from './layouts/patient-dashboard-layout/patient-dashboard-layout.component';
+import { DoctorDashboardLayoutComponent } from './layouts/doctor-dashboard-layout/doctor-dashboard-layout.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashboardComponent,
     AuthLayoutComponent,
-    PatientDashboardLayoutComponent
+    PatientDashboardLayoutComponent,
+    DoctorDashboardLayoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -24,6 +24,7 @@ if(mysqli_num_rows($r)){
   $data = $row;
   if($row["userType"]=="Admin") $output["redirectTo"] = "adminArea";
   if($row["userType"]=="Patient") $output["redirectTo"] = "patientArea";
+  if($row["userType"]=="Doctor") $output["redirectTo"] = "doctorArea";
 }
 
 

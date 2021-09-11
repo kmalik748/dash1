@@ -25,6 +25,3 @@ if(mysqli_num_rows($res)){
 }
 
 echo json_encode($users, JSON_UNESCAPED_UNICODE);
-
-echo json_last_error($users) ;
-//echo json_decode($json, false, 512, JSON_UNESCAPED_UNICODE);
