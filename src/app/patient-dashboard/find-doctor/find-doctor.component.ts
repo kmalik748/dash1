@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Stepper from "bs-stepper";
 import {PatientService} from "../services/patient.service";
+import {DocSearchesInterface} from "../../dataTypes/docSearches.interface";
 declare var $: any;
 
 
@@ -11,8 +12,11 @@ declare var $: any;
 })
 export class FindDoctorComponent implements OnInit {
 
+  query = "";
   stepper: any;
   loading = false;
+  doctorsFound = 0;
+  doctorsList: DocSearchesInterface[] = [];
 
   constructor(private patientService: PatientService) { }
 
@@ -41,6 +45,18 @@ export class FindDoctorComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  getDocProfiles(): void{
+    this.loading = true;
+    this.stepNext();
+    this.patientService.getDocProfiles(this.query).subscribe(
+      data=>{
+        console.log(data);
+        this.doctorsFound = data.TotalRows;
+        this.loading = false;
+      }
+    );
   }
 
 }

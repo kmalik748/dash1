@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FindDoctorComponent } from './find-doctor/find-doctor.component';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 
@@ -19,12 +19,13 @@ export const routes: Routes = [
     FindDoctorComponent,
     MyAppointmentsComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    SharedModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        SharedModule,
+        ReactiveFormsModule,
+        FormsModule
+    ],
   exports: [
     RouterModule
   ]

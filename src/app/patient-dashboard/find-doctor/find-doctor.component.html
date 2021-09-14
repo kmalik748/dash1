@@ -68,11 +68,11 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Describe your issue briefly</label>
-                              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="I'm suffering from insomnia">
+                              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="I'm suffering from insomnia" [(ngModel)]="query" [ngModelOptions]="{standalone: true}">
                             </div>
                           </div>
                           <div class="col-md-8 pt-5">
-                            <button class="btn btn-primary w-100" (click)="stepNext() ">
+                            <button class="btn btn-primary w-100" (click)="getDocProfiles() ">
                               Next
                               <i class="fas fa-arrow-right ml-1"></i>
                             </button>
@@ -81,11 +81,16 @@
                       </div>
                     </div>
                     <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                      <div class="row">
+                      <div *ngIf="loading" class="row justify-content-center">
+                        <div class="col-md-12 text-center">
+                          <app-loader></app-loader>
+                        </div>
+                      </div>
+                      <div *ngIf="!loading" class="row">
                         <div class="col-md-12">
                           <blockquote>
-                            <h3>Best Match Results...</h3>
-                            <small>I'm suffering from insomnia</small>
+                            <h3><span class="font-weight-bolder">{{doctorsFound}}</span> Doctors Found!</h3>
+                            <small>{{query}}</small>
                           </blockquote>
                         </div>
                         <div class="col-md-12">

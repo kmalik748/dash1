@@ -9,6 +9,7 @@ import {environment} from "../../../environments/environment";
 export class PatientService {
 
   private saveAppointmentAPI = environment.API_PATH+'patient/bookAppointment.php';
+  private getDocProfilesAPI = environment.API_PATH+'patient/getDoctors.php';
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +17,13 @@ export class PatientService {
     return  this.http.post<any>(
       this.saveAppointmentAPI,
       {data: 123}
+    );
+  }
+
+  getDocProfiles(qry: String): Observable<any>{
+    return  this.http.post<any>(
+      this.getDocProfilesAPI,
+      {query: qry}
     );
   }
 }
