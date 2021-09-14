@@ -14,12 +14,11 @@ $s = "SELECT id,first_name,middle_name,last_name,gender,dob,city,state,country,e
 
 $r = mysqli_query($con, $s);
 $data = array();
-$output["sql"] = $s;
-$output["con"] = $con;
-$output["getcwd"] = getcwd();
+
 if(mysqli_num_rows($r)){
   $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
   $output["Success"] = true;
+  $output["userID"] = $row["id"];
   $output["userType"] = $row["userType"];
   $data = $row;
   if($row["userType"]=="Admin") $output["redirectTo"] = "adminArea";

@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.logout();
   }
 
   submitLogin(){
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
       data=>{
         if(data.Success){
           this.authService.isLoggedIn = true;
+          localStorage.setItem("userID", data.userID);
           localStorage.setItem(this.authService.authTokenName, data.token);
           $(document).Toasts('create', {
             class: 'bg-success',

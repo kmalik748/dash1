@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Pipe } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {FormGroup} from "@angular/forms";
-import {Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {AuthService} from "../../auth/auth-service.service";
+import {catchError, map} from "rxjs/operators";
+import {UsersDetailsInterface} from "../../dataTypes/users.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +13,10 @@ import {AuthService} from "../../auth/auth-service.service";
 export class DoctorsService {
 
   private updateProfileAPI = environment.API_PATH+'doctor/updateProfileData.php';
+  private getProfileAPI = environment.API_PATH+'doctor/getProfileData.php';
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }
-
-  getUID(): Number{
-    return this.authService.getCurrentUserID();
-  }
 
   updateData(form: FormGroup, availability: string, tags: String[]): Observable<any>{
     var arrayToString = JSON.stringify(Object.assign({}, tags));  // convert array to string
@@ -30,8 +29,15 @@ export class DoctorsService {
         fees: form.get('fees')?.value,
         availability: availability,
         tags: tags_json,
-        userID: this.getUID()
+        token: this.authService.getToken()
       }
+    );
+  }
+
+  getDocDetails(token: string | null): Observable<any>{
+    return this.http.post<UsersDetailsInterface>(
+      this.getProfileAPI,
+      {token: token}
     );
   }
 }

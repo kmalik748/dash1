@@ -81,7 +81,8 @@
 
             <div class="row justify-content-center mt-5">
               <div class="col-md-8">
-                <button class="btn btn-primary w-100" (click)="submitRequest()">
+                <app-loader *ngIf="loading"></app-loader>
+                <button *ngIf="!loading" class="btn btn-primary w-100" (click)="submitRequest()" [disabled]="!this.form.valid">
                   <i class="fas fa-save mr-2"></i>
                   Save Changes
                 </button>

@@ -61,12 +61,13 @@ export class AuthService {
     );
   }
 
-  getCurrentUserID(): Number | any{
-    this.decodeToken().subscribe(
-      data=>{
-        return data.data.id ? +data.data.id : null;
-      }
-    );
-  }
+  getToken(): string | null{
+    return localStorage.getItem(this.authTokenName);
+}
 
+  logout(){
+    this.userName = "";
+    this.isLoggedIn = false;
+    localStorage.removeItem(this.authTokenName);
+  }
 }

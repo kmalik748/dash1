@@ -1,4 +1,6 @@
 <?php
+require 'app.php';
+
 function getTimeSlot($interval, $start_time, $end_time)
 {
     $start = new DateTime($start_time);
@@ -21,6 +23,15 @@ function getTimeSlot($interval, $start_time, $end_time)
 }
 
 
-$slots = getTimeSlot(30, '10:00', '13:00');
+$s = "SELECT * FROM doctors WHERE id=4";
+$r = mysqli_query($con, $s);
+$row = mysqli_fetch_array($r);
+
+//echo date('H:i', strtotime($row["startTime"]));
+//echo "<br>";
+//echo date('H:i', strtotime($row["endTime"]));
+
+
+$slots = getTimeSlot(30, $row["startTime"], $row["endTime"]);
 echo '<pre>';
 print_r($slots);

@@ -1,7 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { find, get, pull } from "lodash";
+import {find, forEach, pull} from "lodash";
 import {DoctorsService} from "../services/doctors.service";
+import {AuthService} from "../../auth/auth-service.service";
 declare var $: any;
 
 @Component({
@@ -14,18 +15,39 @@ export class ProfileSettingsComponent implements OnInit {
 
   @ViewChild('tagInput') tagInputRef: ElementRef | any;
   @ViewChild('availability') availability: ElementRef | any;
-  tags: string[] = ['Asthma', 'Blood Pressure', 'Corona-Virus Treatment', 'Diabetes'];
+  tags: string[] = [];
   form: FormGroup;
+  loading=false;
+  docDetails: any;
 
-  constructor(private fb: FormBuilder, private docService: DoctorsService) {
+  constructor(private fb: FormBuilder, private docService: DoctorsService, private authService: AuthService) {
 
     this.form = this.fb.group({
-      speciality: [''],
-      qualification: [''],
+      speciality: ['', Validators.required],
+      qualification: ['', Validators.required],
       availability: [''],
-      fees: [''],
+      fees: ['', Validators.required],
       tag: [undefined],
     });
+
+    this.docDetails = this.docService.getDocDetails(this.authService.getToken()).subscribe(
+      (data)=>{
+
+        this.form.patchValue({
+          speciality: data.data.specialty,
+          qualification: data.data.qualification,
+          fees: data.data.fees
+        });
+
+        var apiTags =JSON.parse(data.data.tags);
+;
+        for (let key of Object.keys(apiTags)) {
+          let value = apiTags[key];
+          if(!this.tags.includes(value)) this.tags.push(value);
+        }
+
+      }
+    );
   }
 
   ngOnInit() {
@@ -75,10 +97,29 @@ export class ProfileSettingsComponent implements OnInit {
   }
 
   submitRequest(): void{
+    this.loading = true;
     console.log(this.tags);
     this.docService.updateData(this.form, this.availability.nativeElement.value, this.tags).subscribe(
       data=>{
         console.log(data);
+        if(data.Success){
+          this.loading = false;
+          $(document).Toasts('create', {
+            class: 'bg-success',
+            title: 'Settings Updated!',
+            subtitle: 'Just Now',
+            body: 'Account information was saved successfully'
+          });
+        }
+      },
+      error => {
+        $(document).Toasts('create', {
+          class: 'bg-danger',
+          title: 'Error!',
+          subtitle: 'Just Now',
+          body: 'Error Occurred while saving. Please fill all fields'
+        });
+        this.loading = false;
       }
     );
   }
