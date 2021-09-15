@@ -90,11 +90,15 @@
                         <div class="col-md-12">
                           <blockquote>
                             <h3><span class="font-weight-bolder">{{doctorsFound}}</span> Doctors Found!</h3>
-                            <small>{{query}}</small>
+                            <small class="text-primary"><b><i class="fas fa-search fa-flip-horizontal mr-2"></i></b>{{query}}</small>
                           </blockquote>
                         </div>
                         <div class="col-md-12">
-                          <app-doctor-details *ngFor="let doctor of doctorsList" [doctor]="doctor"></app-doctor-details>
+                          <app-doctor-details
+                            *ngFor="let doctor of doctorsList"
+                            [doctor]="doctor"
+                            (doctorID)="selectDoctor($event)">
+                          </app-doctor-details>
                         </div>
 <!--                        <div *ngFor="">-->
 <!--                        </div>-->
@@ -116,30 +120,17 @@
                         <p>Book yourself in the following available slots</p>
                       </div>
                       <div class="row justify-content-center">
-                        <div class="col-md-12">
-                          <div class="btn-group btn-group-toggle timeSlots" data-toggle="buttons">
-                            <label class="btn bg-white d-flex align-items-center">
+                        <div class="col-md-12 text-center" *ngIf="loading">
+                          <app-loader></app-loader>
+                        </div>
+                        <div class="col-md-12" *ngIf="!loading">
+                          <div class="btn-group btn-group-toggle timeSlots d-flex flex-wrap" data-toggle="buttons">
+                            <label class="btn bg-white d-flex align-items-center m-3" *ngFor="let slot of timeSlots">
                               <input class="timeSlot" type="radio" name="options" id="option_b1" autocomplete="off" checked="">
                               <i class="fas fa-calendar-check text-primary fontSizeXXLarge mr-2"></i>
                               <span class="d-flex flex-column">
-                                <span>10:00AM - 10:30 AM</span>
-                                <span>14 Sep, 2021</span>
-                              </span>
-                            </label>
-                            <label class="btn bg-white d-flex align-items-center">
-                              <input class="timeSlot" type="radio" name="options" id="option_b2" autocomplete="off" checked="">
-                              <i class="fas fa-calendar-check text-primary fontSizeXXLarge mr-2"></i>
-                              <span class="d-flex flex-column">
-                                <span>10:00AM - 10:30 AM</span>
-                                <span>14 Sep, 2021</span>
-                              </span>
-                            </label>
-                            <label class="btn bg-white d-flex align-items-center">
-                              <input class="timeSlot" type="radio" name="options" id="option_b3" autocomplete="off" checked="">
-                              <i class="fas fa-calendar-check text-primary fontSizeXXLarge mr-2"></i>
-                              <span class="d-flex flex-column">
-                                <span>10:00AM - 10:30 AM</span>
-                                <span>14 Sep, 2021</span>
+                                <span>{{slot}}</span>
+<!--                                <span>14 Sep, 2021</span>-->
                               </span>
                             </label>
                           </div>

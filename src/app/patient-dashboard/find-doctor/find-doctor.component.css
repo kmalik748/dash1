@@ -1,0 +1,34 @@
+#docPic{
+  border-radius: 50% !important;
+}
+.mp-event-oc-listing-doctor-name u{
+  font-size: 1rem;
+}
+.box-shadow-sm {
+  box-shadow: 0 .125rem .3rem -.0625rem rgba(0,0,0,.03),0 .275rem .75rem -.0625rem rgba(0,0,0,.06)!important;
+}
+.font-size-xs {
+  font-size: .75rem!important;
+}
+.timeSlots label{
+  border-radius: 7px;
+  margin-right: 5px;
+}
+.fontSizeXXLarge{
+  font-size: xx-large;
+}
+
+.bg-white.btn.active, .bg-white.btn:active, .bg-white.btn:not(:disabled):not(.disabled).active, .bg-white.btn:not(:disabled):not(.disabled):active{
+  background-color: white !important;
+}
+.bg-white.btn.active, .bg-white.btn:active, .bg-white.btn:not(:disabled):not(.disabled).active, .bg-white.btn:not(:disabled):not(.disabled):active {
+  border: 1px solid #007bff;
+  box-shadow: 0 .275rem .75rem -.0625rem #007bff !important;
+}
+
+.font-size-sm {
+  font-size: .875rem!important;
+}
+.callout-primary{
+  border-left-color: #007bff;
+}

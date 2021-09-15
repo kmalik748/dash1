@@ -34,8 +34,8 @@
     </div>
 
     <hr>
-    <h3 class="font-italic font-weight-bold">#Tags</h3>
-    <div class="row">
+<!--    <h3 class="font-italic font-weight-bold">#Tags</h3>-->
+    <div class="row mt-2">
       <div class="col md-12">
         <span class="badge badge-primary mr-2" *ngFor="let tag of tags">{{tag}}</span>
 
@@ -69,7 +69,7 @@
           Timings</label>
         <p class="mb-0 font-size-xs">{{doctor.startTime}} - {{doctor.endTime}}</p>
       </div>
-      <button (click)="stepNext()" class="btn btn-outline-primary btn-block mt-2 mb-2 mp-event-oc-listing-doctor-consult-online">
+      <button (click)="selectDoc()" class="btn btn-outline-primary btn-block mt-2 mb-2 mp-event-oc-listing-doctor-consult-online">
         <i class="fas fa-video"></i>
         Book Video Consultation
       </button>

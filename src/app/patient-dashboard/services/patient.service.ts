@@ -10,6 +10,7 @@ export class PatientService {
 
   private saveAppointmentAPI = environment.API_PATH+'patient/bookAppointment.php';
   private getDocProfilesAPI = environment.API_PATH+'patient/getDoctors.php';
+  private getDocTimingsAPI = environment.API_PATH+'patient/getDocTimings.php';
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +25,13 @@ export class PatientService {
     return  this.http.post<any>(
       this.getDocProfilesAPI,
       {query: qry}
+    );
+  }
+
+  getDocTimings(docID: Number): Observable<any>{
+    return  this.http.post<any>(
+      this.getDocTimingsAPI,
+      {docID: docID}
     );
   }
 }

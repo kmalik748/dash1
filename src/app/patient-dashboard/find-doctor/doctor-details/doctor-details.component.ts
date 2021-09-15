@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FindDoctorComponent} from "../find-doctor.component";
 import {DocSearchesInterface} from "../../../dataTypes/docSearches.interface";
 
@@ -12,7 +12,9 @@ export class DoctorDetailsComponent implements OnInit {
   @Input() doctor: DocSearchesInterface | any;
   tags: String[] = []
 
-  constructor(private findDocComp: FindDoctorComponent) { }
+  @Output() doctorID = new EventEmitter<Number>();
+
+  constructor() { }
 
   ngOnInit(): void {
     console.log(this.doctor.fullName);
@@ -25,8 +27,8 @@ export class DoctorDetailsComponent implements OnInit {
     }
   }
 
-  stepNext(): void{
-    this.findDocComp.stepNext();
+  selectDoc(): void{
+    this.doctorID.emit(this.doctor.id);
   }
 
 }
