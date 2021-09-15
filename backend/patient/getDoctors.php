@@ -22,17 +22,34 @@ $constructs ="SELECT * FROM doctors WHERE  ($construct) ";
 $run = mysqli_query($con, $constructs);
 $output["TotalRows"] = mysqli_num_rows($run);
 
+
+
 if(mysqli_num_rows($run)){
   $output["Success"] = true;
   while($row = mysqli_fetch_array($run, MYSQLI_ASSOC)){
     $id = $row["id"];
-    $doctor["picture"] = "https://picsum.photos/170/170?random=1";
+
+    $days = array();
+    $from_date = new DateTime($row["startTime"]);
+    $to_date = new DateTime($row["endTime"]);
+    for ($date = $from_date; $date <= $to_date; $date->modify('+1 day')) {
+      if (!in_array($date->format('D'), $days))
+      {
+        array_push($days, $date->format('D'));
+      }
+    }
+
+    $doctor["days"] = $days;
+    $doctor["picture"] = "https://picsum.photos/170/170";
     $doctor["specialty"] = $row["specialty"];
     $doctor["qualification"] = $row["qualification"];
     $doctor["fees"] = $row["fees"];
     $doctor["tags"] = $row["tags"];
-    $doctor["startTime"] = $row["startTime"];
-    $doctor["endTime"] = $row["endTime"];
+    $doctor["startDate"] = $row["startTime"];
+    $doctor["endDate"] = $row["endTime"];
+
+    $doctor["startTime"] = date('g:i A', strtotime($row["startTime"]));
+    $doctor["endTime"] = date('g:i A', strtotime($row["endTime"]));
     $constructs ="SELECT * FROM users WHERE id=$id";
     $res = mysqli_query($con, $constructs);
     $row = mysqli_fetch_array($res, MYSQLI_ASSOC);

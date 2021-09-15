@@ -6,6 +6,9 @@ export interface DocSearchesInterface {
   qualification: string,
   fees: string,
   tags: string,
+  days: string,
   startTime: string,
-  endTime: string
+  endTime: string,
+  startDate: string,
+  endDate: string
 }
