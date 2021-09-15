@@ -20,6 +20,7 @@ export class FindDoctorComponent implements OnInit {
   doctorsList: DocSearchesInterface[] = [];
   selectedDoctor = 0;
   timeSlots: String[] = [];
+  dateSlots: String[] = [];
 
   constructor(private patientService: PatientService) { }
 
@@ -77,6 +78,7 @@ export class FindDoctorComponent implements OnInit {
       (data: DocTimingsInterface) =>{
        // this.timeSlots = data.
         this.timeSlots = data.times;
+        this.dateSlots = data.dates;
         this.loading = false;
       }
     );
