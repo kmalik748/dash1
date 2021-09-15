@@ -53,8 +53,11 @@ export class FindDoctorComponent implements OnInit {
     this.patientService.getDocProfiles(this.query).subscribe(
       data=>{
         console.log(data);
+        this.doctorsList = data.Doctors;
+        this.doctorsList = data.Doctors;
         this.doctorsFound = data.TotalRows;
         this.loading = false;
+        console.log(this.doctorsList);
       }
     );
   }

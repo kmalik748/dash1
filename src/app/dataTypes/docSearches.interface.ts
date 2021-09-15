@@ -1,5 +1,6 @@
 export interface DocSearchesInterface {
   id: number,
+  picture: String,
   fullName: string,
   specialty: string,
   qualification: string,

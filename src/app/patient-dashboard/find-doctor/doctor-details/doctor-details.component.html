@@ -1,0 +1,67 @@
+<div id="doctor-counter-1" class="row pt-3 bg-white mb-2 shadow p-3">
+  <div class="col-4 col-md-2 text-center">
+    <a>
+      <img id="docPic" class="w-100 rounded mp-event-oc-listing-doctor-picture" [src]="doctor.picture" alt="Dr. Selman Ijaz image" style="width: 100%">
+    </a>
+  </div>
+  <div class="col-8 d-block d-sm-none">
+    <div>
+      <h2 class="font-size-md font-weight-bold mb-0  ga-event-listing-doctor-name ">
+        <a href="" class="mp-event-oc-listing-doctor-name">
+          <u>{{doctor.fullName}}</u>
+        </a>
+      </h2>
+      <p style="color: #333333" class="product-meta d-block font-size-md mb-0" href="#">{{doctor.speciality}}</p>
+      <p style="color: #333333" class="mb-0 font-size-md product-meta">{{doctor.qualification}}</p>
+    </div>
+  </div>
+  <!-- Content Section for Mobile -->
+  <div class="col-xs-12 col-md-6 mt-3">
+    <div class="d-none d-sm-block">
+      <h2 class="font-size-md font-weight-bold mb-0  ga-event-listing-doctor-name "><a href="https://www.marham.pk/online-consultation/acupuncture/islamabad/dr-selman-ijaz-21429" class="mp-event-oc-listing-doctor-name"><u>Dr. Selman Ijaz</u></a></h2>
+      <p class="product-meta d-block font-size-sm mb-0 mt-1" href="#">Acupuncture</p>
+      <p class="mb-0 font-size-md ">Diploma (Acupuncture and Herbology)</p>
+    </div>
+
+    <hr>
+    <h3 class="font-italic font-weight-bold">#Tags</h3>
+    <div class="row">
+      <div class="col md-12">
+        <span class="badge badge-primary mr-2" *ngFor="let tag of tags">{{tag}}</span>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4 p-0">
+    <div class="card-body box-shadow-sm p-3 mt-3">
+      <div class=" d-flex justify-content-between">
+        <label style="color: #333333" class="font-size-xs pb-3">
+          <i class="fas fa-dollar-sign"></i>
+          Fees
+        </label>
+        <p class="mb-1 font-size-xs"><span>Rs. 450</span></p>
+      </div>
+
+      <div class=" d-flex justify-content-between">
+        <label style="color: #333333" class="font-size-xs d-flex pb-3 text-black">
+          <i class="fas fa-calendar-check mr-1 mt-1"></i>
+          Days
+        </label>
+        <p class="mb-0 font-size-xs"> Wed</p>
+      </div>
+      <div class=" d-flex justify-content-between">
+        <label style="color: #333333" class="font-size-xs pb-3 text-black">
+          <i class="fas fa-clock"></i>
+          Timings</label>
+        <p class="mb-0 font-size-xs">3 PM - 7 PM</p>
+      </div>
+      <button (click)="stepNext()" class="btn btn-outline-primary btn-block mt-2 mb-2 mp-event-oc-listing-doctor-consult-online">
+        <i class="fas fa-video"></i>
+        Book Video Consultation
+      </button>
+      <a class="btn btn-primary btn-block mb-2 ga-event-listing-offpanel-doctor-view-profile mp-event-oc-listing-doctor-view-profile">View Profile</a>
+    </div>
+  </div>
+</div>

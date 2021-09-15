@@ -6,6 +6,7 @@ import {SharedModule} from "../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FindDoctorComponent } from './find-doctor/find-doctor.component';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
+import { DoctorDetailsComponent } from './find-doctor/doctor-details/doctor-details.component';
 
 export const routes: Routes = [
   { path: '', component: PatientHomeComponent },
@@ -17,7 +18,8 @@ export const routes: Routes = [
   declarations: [
     PatientHomeComponent,
     FindDoctorComponent,
-    MyAppointmentsComponent
+    MyAppointmentsComponent,
+    DoctorDetailsComponent
   ],
     imports: [
         CommonModule,

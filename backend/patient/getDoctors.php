@@ -26,6 +26,7 @@ if(mysqli_num_rows($run)){
   $output["Success"] = true;
   while($row = mysqli_fetch_array($run, MYSQLI_ASSOC)){
     $id = $row["id"];
+    $doctor["picture"] = "https://picsum.photos/170/170?random=1";
     $doctor["specialty"] = $row["specialty"];
     $doctor["qualification"] = $row["qualification"];
     $doctor["fees"] = $row["fees"];
