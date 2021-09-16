@@ -58,6 +58,12 @@ export class ProfileSettingsComponent implements OnInit {
       locale: {
         format: 'MM/DD/YYYY hh:mm A'
       }
+      // timePicker: true,
+      // timePicker24Hour: true,
+      // timePickerIncrement: 30,
+      // locale: {
+      //   format: 'MM/DD/YYYY H:mm'
+      // }
     })
   }
 

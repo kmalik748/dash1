@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FindDoctorComponent} from "../find-doctor.component";
 import {DocSearchesInterface} from "../../../dataTypes/docSearches.interface";
 
 @Component({
@@ -10,9 +9,9 @@ import {DocSearchesInterface} from "../../../dataTypes/docSearches.interface";
 export class DoctorDetailsComponent implements OnInit {
 
   @Input() doctor: DocSearchesInterface | any;
-  tags: String[] = []
-
-  @Output() doctorID = new EventEmitter<Number>();
+  @Output() doctorID = new EventEmitter<{ fees: any; name: any; id: any }>();
+  tags: String[] = [];
+  docDetails: { fees: any; name: any; id: any; } | undefined;
 
   constructor() { }
 
@@ -20,7 +19,6 @@ export class DoctorDetailsComponent implements OnInit {
     console.log(this.doctor.fullName);
 
     var apiTags =JSON.parse(this.doctor.tags);
-    ;
     for (let key of Object.keys(apiTags)) {
       let value = apiTags[key];
       if(!this.tags.includes(value)) this.tags.push(value);
@@ -28,7 +26,8 @@ export class DoctorDetailsComponent implements OnInit {
   }
 
   selectDoc(): void{
-    this.doctorID.emit(this.doctor.id);
+    this.docDetails = {id: this.doctor.id, name: this.doctor.fullName, fees: this.doctor.fees};
+    this.doctorID.emit(this.docDetails);
   }
 
 }

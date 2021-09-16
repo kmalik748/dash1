@@ -25,16 +25,18 @@ echo json_encode($output);
 
 function getTimeSlot($interval, $start_time, $end_time)
 {
+  $timeFormat = "H:i";
   $start = new DateTime($start_time);
   $end = new DateTime($end_time);
-  $startTime = $start->format('H:i');
-  $endTime = $end->format('H:i');
+  $startTime = $start->format($timeFormat);
+  $endTime = $end->format($timeFormat);
+//  echo $endTime; exit(); die();
   $times = array();
   while(strtotime($startTime) <= strtotime($endTime)){
     $time = array();
     $start = $startTime;
-    $end = date('H:i',strtotime('+'.$interval.' minutes',strtotime($startTime)));
-    $startTime = date('H:i',strtotime('+'.$interval.' minutes',strtotime($startTime)));
+    $end = date($timeFormat,strtotime('+'.$interval.' minutes',strtotime($startTime)));
+    $startTime = date($timeFormat,strtotime('+'.$interval.' minutes',strtotime($startTime)));
     if(strtotime($startTime) <= strtotime($endTime)){
       $time['start_time'] = $start;
       $time['end_time'] = $end;

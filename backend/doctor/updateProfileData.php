@@ -26,9 +26,9 @@ try {
 
   $dates = explode("-",$availability);
   $timestamp1 = substr($dates[0], 0, -1);;
-  $time1 = date("Y-m-d h:m:s", strtotime($timestamp1));
+  $time1 = date("Y-m-d H:i:s", strtotime($timestamp1));
   $timestamp2 = $dates[1];
-  $time2 = date("Y-m-d h:m:s", strtotime($timestamp2));
+  $time2 = date("Y-m-d H:i:s", strtotime($timestamp2));
 
   $output["1"] = $time1;
   $output["2"] = $time2;

@@ -3,6 +3,8 @@ import Stepper from "bs-stepper";
 import {PatientService} from "../services/patient.service";
 import {DocSearchesInterface} from "../../dataTypes/docSearches.interface";
 import {DocTimingsInterface} from "../../dataTypes/docTimings.interface";
+import {AuthService} from "../../auth/auth-service.service";
+import {UsersDetailsInterface} from "../../dataTypes/users.interface";
 declare var $: any;
 
 
@@ -21,8 +23,28 @@ export class FindDoctorComponent implements OnInit {
   selectedDoctor = 0;
   timeSlots: String[] = [];
   dateSlots: String[] = [];
+  finalTIme: String = "";
+  finalDate: String = "";
+  patientDetails: UsersDetailsInterface;
+  doctorDetails: { fees: any; name: any; id: any; } | undefined;
 
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService, private authService: AuthService) {
+    this.patientDetails = {
+      id: 0,
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      gender: '',
+      dob: '',
+      city: '',
+      state: '',
+      country: '',
+      email: '',
+      phone_number: '',
+      password: '',
+      userType: ''
+    };
+  }
 
   ngOnInit(): void {
     this.stepper = new Stepper(<Element>document.querySelector('.bs-stepper'))
@@ -66,20 +88,49 @@ export class FindDoctorComponent implements OnInit {
     );
   }
 
-  selectDoctor(data: any): void{
-    this.selectedDoctor = data;
+  selectDoctor(data: { fees: any; name: any; id: any }): void{
+    // let arr: any = [];
+    // Object.keys(data).map(function(key: any){
+    //   arr.push({[key]:data[key]})
+    //   return arr;
+    // });
+    // arr = arr[0][0];
+    // console.log(arr);
+
+    this.doctorDetails = data;
+    console.log(data);
     this.getDocTimings();
   }
 
   getDocTimings(): void{
     this.stepNext();
     this.loading = true;
-    this.patientService.getDocTimings(this.selectedDoctor).subscribe(
+    this.patientService.getDocTimings(this.doctorDetails?.id).subscribe(
       (data: DocTimingsInterface) =>{
        // this.timeSlots = data.
         this.timeSlots = data.times;
         this.dateSlots = data.dates;
         this.loading = false;
+      }
+    );
+  }
+
+  setFinalTime(time: String): void{
+    this.finalTIme = time;
+  }
+
+  setFinalDate(date: String): void{
+    console.log(date);
+    this.finalDate = date;
+  }
+
+  getPatientDetails(): void{
+    this.loading = true;
+    this.stepNext();
+    this.authService.decodeToken().subscribe(
+      data=>{
+          this.patientDetails = data.data;
+          this.loading = false;
       }
     );
   }

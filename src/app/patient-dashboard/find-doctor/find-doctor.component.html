@@ -124,8 +124,9 @@
                           <app-loader></app-loader>
                         </div>
                         <div class="col-md-12" *ngIf="!loading">
+                          <label>Available Times:</label>
                           <div class="btn-group btn-group-toggle timeSlots d-flex flex-wrap" data-toggle="buttons">
-                            <label class="btn bg-white d-flex align-items-center m-3" *ngFor="let slot of timeSlots">
+                            <label class="btn bg-white d-flex align-items-center m-3" *ngFor="let slot of timeSlots" (click)="setFinalTime(slot)">
                               <input class="timeSlot" type="radio" name="options" id="option_b1" autocomplete="off" checked="">
                               <i class="fas fa-calendar-check text-primary fontSizeXXLarge mr-2"></i>
                               <span class="d-flex flex-column">
@@ -137,8 +138,9 @@
                         </div>
                         <div class="col md-12 mt-2">
                           <div class="form-group">
-                            <label>Select Day</label>
-                            <select class="custom-select">
+                            <label>Available Dates:</label>
+                            <select class="custom-select" #selectDate (change)="setFinalDate(selectDate.value)">
+                              <option value="">Select date</option>
                               <option *ngFor="let date of dateSlots" [value]="date">
                                   {{date}}
                               </option>
@@ -156,7 +158,7 @@
                           </button>
                         </div>
                         <div class="col-md-6">
-                          <button class="btn btn-primary w-100" (click)="stepNext() ">
+                          <button class="btn btn-primary w-100" (click)="getPatientDetails() ">
                             Proceed
                             <i class="fas fa-arrow-right ml-1"></i>
                           </button>
@@ -174,28 +176,28 @@
                         </div>
                       </div>
 
-
-                      <div class="card box-shadow-sm my-3 p-3">
+                      <app-loader *ngIf="loading"></app-loader>
+                      <div *ngIf="!loading" class="card box-shadow-sm my-3 p-3">
                         <label class="font-weight-bold text-accent">Appointment Details</label>
                         <div class="d-flex justify-content-between border-bottom">
                           <p class="my-2">Doctor Name</p>
-                          <p class="my-2 text-accent font-size-sm">Prof. Dr. Javed Akram</p>
+                          <p class="my-2 text-accent font-size-sm">{{doctorDetails?.name}}</p>
                         </div>
                         <div class="d-flex justify-content-between border-bottom">
                           <p class="my-2">Date and Time</p>
-                          <p class="my-2 text-accent font-size-sm">11-Sep-2021 | 10:00 PM</p>
+                          <p class="my-2 text-accent font-size-sm">{{finalDate}} | {{finalTIme}}</p>
                         </div>
                         <div class="d-flex justify-content-between border-bottom">
                           <p class="my-2">Patient name</p>
-                          <p class="my-2 text-accent font-size-sm">asdf</p>
+                          <p class="my-2 text-accent font-size-sm">{{patientDetails.first_name}}</p>
                         </div>
                         <div class="d-flex justify-content-between border-bottom">
                           <p class="my-2">Patient phone</p>
-                          <p class="my-2 text-accent font-size-sm">+923118547121</p>
+                          <p class="my-2 text-accent font-size-sm">{{patientDetails.phone_number}}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                           <p class="my-2">Doctor Fees</p>
-                          <p class="my-2 text-success">Rs. 3,000</p>
+                          <p class="my-2 text-success">{{doctorDetails?.fees}}</p>
                         </div>
                       </div>
 
