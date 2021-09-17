@@ -6,7 +6,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 
 export const routes: Routes = [
-  { path: '', component: MeetingHomeComponent }
+  { path: 'join/:id', component: MeetingHomeComponent }
 ];
 
 @NgModule({

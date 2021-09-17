@@ -13,7 +13,7 @@ $r = mysqli_query($con, $s);
 if(mysqli_num_rows($r)){
   while ($row=mysqli_fetch_array($r, MYSQLI_ASSOC)){
     $appointment = array();
-    $docID = $row["doctor_id"];
+    $docID = $appointment["docID"] = $row["doctor_id"];
     $sql = "SELECT * FROM users WHERE id = $docID";
     $res = mysqli_query($con, $sql);
     $r1 = mysqli_fetch_array($res);

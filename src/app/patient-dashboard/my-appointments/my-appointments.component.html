@@ -50,8 +50,8 @@
                   <td>{{ appointment.time }}</td>
                   <td>{{ appointment.timestamp }}</td>
                   <td>
-                    <a class="btn btn-outline-primary">
-                      <i class="fas fa-video"></i> Join Now
+                    <a class="btn btn-primary" [routerLink]="['/meeting', 'join', appointment.docID+patientDetails.id]">
+                      <i class="fas fa-video mr-1"></i> Join Now
                     </a>
                   </td>
                 </tr>

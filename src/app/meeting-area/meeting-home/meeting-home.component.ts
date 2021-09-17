@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {ActivatedRoute} from "@angular/router";
+import {AuthService} from "../../auth/auth-service.service";
 declare var $: any;
 
 @Component({
@@ -10,12 +12,20 @@ declare var $: any;
 })
 export class MeetingHomeComponent implements OnInit {
 
-  link = "https://aivizo.online/12332";
+  link: string = "";
   urlSafe: SafeResourceUrl |any;
+  sub: any;
 
-  constructor(public sanitizer: DomSanitizer) { }
+
+  constructor(public sanitizer: DomSanitizer,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.sub = this.route.params.subscribe( paramMap => {
+      this.link = "https://aivizo.online/"+paramMap['id'];
+      console.log("Link: "+this.link);
+    });
+
     this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.link);
     $( "body" ).addClass( "sidebar-collapse" );
   }
