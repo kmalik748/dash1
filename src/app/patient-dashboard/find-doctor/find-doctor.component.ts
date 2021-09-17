@@ -6,6 +6,7 @@ import {DocTimingsInterface} from "../../dataTypes/docTimings.interface";
 import {AuthService} from "../../auth/auth-service.service";
 import {UsersDetailsInterface} from "../../dataTypes/users.interface";
 import {PatientDashboardLayoutComponent} from "../../layouts/patient-dashboard-layout/patient-dashboard-layout.component";
+import {Router} from "@angular/router";
 declare var $: any;
 
 
@@ -30,7 +31,8 @@ export class FindDoctorComponent implements OnInit {
   doctorDetails: { fees: any; name: any; id: any; } | undefined;
 
   constructor(private patientService: PatientService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
     this.patientDetails = {
       id: 0,
       first_name: '',
@@ -71,6 +73,7 @@ export class FindDoctorComponent implements OnInit {
           body: 'Your appointment was successfully booked. You will be informed through registered email'
         });
         this.loading = false;
+        this.router.navigate(['patientArea', 'my-appointments']);
       }
     });
   }

@@ -5,6 +5,7 @@ import {AuthLayoutComponent} from "./layouts/auth-layout/auth-layout.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {PatientDashboardLayoutComponent} from "./layouts/patient-dashboard-layout/patient-dashboard-layout.component";
 import {DoctorDashboardLayoutComponent} from "./layouts/doctor-dashboard-layout/doctor-dashboard-layout.component";
+import {MeetingLayoutComponent} from "./layouts/meeting-layout/meeting-layout.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
@@ -30,6 +31,12 @@ const routes: Routes = [
     component: DoctorDashboardLayoutComponent,
     canActivateChild: [AuthGuard],
     loadChildren: () => import('./doctor-dashboard/doctor.module').then(m => m.DoctorModule)
+  },
+  {
+    path: 'meeting',
+    component: MeetingLayoutComponent,
+    canActivateChild: [AuthGuard],
+    loadChildren: () => import('./meeting-area/meeting.module').then(m => m.MeetingModule)
   }
 ];
 

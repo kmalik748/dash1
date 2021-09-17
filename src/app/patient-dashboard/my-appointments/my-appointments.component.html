@@ -34,43 +34,36 @@
               <table *ngIf="!loading" id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Gender</th>
-                  <th>DOB</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Country</th>
-                  <th>Email</th>
-                  <th>Contact #</th>
-                  <th>Action</th>
+                  <th>#</th>
+                  <th> <i class="fas fa-briefcase-medical"></i> Doctor</th>
+                  <th> <i class="fas fa-calendar-day"></i> Appointment Date</th>
+                  <th> <i class="fas fa-clock"></i> Appointment Time</th>
+                  <th> <i class="fas fa-calendar-check"></i> Booking Time</th>
+                  <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let user of patientDetails">
-                  <td>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</td>
-                  <td>{{ user.gender }}</td>
-                  <td>{{ user.dob }}</td>
-                  <td>{{ user.city }}</td>
-                  <td>{{ user.state }}</td>
-                  <td>{{ user.country }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.phone_number }}</td>
+                <tr *ngFor="let appointment of appointments">
+                  <td>{{ appointment.id }}</td>
+                  <td><img [src]="appointment.pic" class="img-circle img-sm mr-2"> {{ appointment.DoctorName }}</td>
+                  <td>{{ appointment.date }}</td>
+                  <td>{{ appointment.time }}</td>
+                  <td>{{ appointment.timestamp }}</td>
                   <td>
-                    sadf
+                    <a class="btn btn-outline-primary">
+                      <i class="fas fa-video"></i> Join Now
+                    </a>
                   </td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Name</th>
-                  <th>Gender</th>
-                  <th>DOB</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Country</th>
-                  <th>Email</th>
-                  <th>Contact #</th>
-                  <th>Action</th>
+                  <th>#</th>
+                  <th> <i class="fas fa-briefcase-medical"></i> Doctor</th>
+                  <th> <i class="fas fa-calendar-day"></i> Appointment Date</th>
+                  <th> <i class="fas fa-clock"></i> Appointment Time</th>
+                  <th> <i class="fas fa-calendar-check"></i> Booking Time</th>
+                  <th>Actions</th>
                 </tr>
                 </tfoot>
               </table>

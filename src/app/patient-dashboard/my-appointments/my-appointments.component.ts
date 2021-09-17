@@ -5,6 +5,7 @@ import {AppointmentsInterface} from "../../dataTypes/appointments.interface";
 import {PatientService} from "../services/patient.service";
 import {UsersDetailsInterface} from "../../dataTypes/users.interface";
 import {AuthService} from "../../auth/auth-service.service";
+import {getAppointmentsInterface} from "../../dataTypes/getAppointments.interface";
 declare var $: any;
 
 
@@ -16,33 +17,33 @@ declare var $: any;
 })
 export class MyAppointmentsComponent implements OnInit {
 
-  appointments: AppointmentsInterface[];
+  appointments: getAppointmentsInterface[];
   loading: boolean = false;
   patientDetails: UsersDetailsInterface | any;
 
   constructor(private patientService: PatientService,
               private authService: AuthService) {
     this.appointments = [];
-    this.patientDetails = this.authService.decodeToken().subscribe(
-      data=>{
-        return  data.data;
-      }
-    );
   }
 
   ngOnInit(): void {
+    this.getAppointments();
   }
 
   getAppointments(): void{
     this.loading = true;
-    this.patientService.getAppointments(this.patientDetails.id).subscribe(data => {
-      this.appointments = data;
-      this.loading = false;
-
-      $(function () {
-        $("#example1").DataTable();
-      });
-    });
+    this.authService.decodeToken().subscribe(
+      data=>{
+        this.patientDetails = data.data;
+        this.patientService.getAppointments(this.patientDetails.id).subscribe(data => {
+          this.appointments = data.data;
+          $(function () {
+            $("#example1").DataTable();
+          });
+          this.loading = false;
+        });
+      }
+    );
   }
 
 }

@@ -24,13 +24,13 @@ export class AuthGuard implements CanActivateChild{
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
-    console.log("Guard");
+    // console.log("Guard");
     return this.authService.decodeToken().pipe(
       map(e => {
-        console.log("Data: "+e.data.id);
+        // console.log("Data: "+e.data.id);
         this.authService.userName = e.data.first_name;
         if (e) {
-          console.log("yes");
+          // console.log("yes");
           return true;
         } else {
           return false;
