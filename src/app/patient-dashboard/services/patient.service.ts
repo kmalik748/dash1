@@ -11,13 +11,25 @@ export class PatientService {
   private saveAppointmentAPI = environment.API_PATH+'patient/bookAppointment.php';
   private getDocProfilesAPI = environment.API_PATH+'patient/getDoctors.php';
   private getDocTimingsAPI = environment.API_PATH+'patient/getDocTimings.php';
+  private getAppointmentsAPI = environment.API_PATH+'patient/getAppointments.php';
 
   constructor(private http: HttpClient) { }
 
-  saveAppointment(): Observable<any>{
+  saveAppointment(patientID: number, doctorID: number, Apnt_date: String, Apnt_time: String): Observable<any>{
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
     return  this.http.post<any>(
       this.saveAppointmentAPI,
-      {data: 123}
+      {
+        patientID: patientID,
+        doctorID: doctorID,
+        apt_Date: Apnt_date,
+        apt_Time: Apnt_time,
+        timestamp: dateTime
+      }
     );
   }
 
@@ -32,6 +44,13 @@ export class PatientService {
     return  this.http.post<any>(
       this.getDocTimingsAPI,
       {docID: docID}
+    );
+  }
+
+  getAppointments(patientID: Number): Observable<any>{
+    return  this.http.post<any>(
+      this.getAppointmentsAPI,
+      {patientID: patientID}
     );
   }
 }

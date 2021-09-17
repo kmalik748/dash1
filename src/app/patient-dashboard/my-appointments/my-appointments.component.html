@@ -18,9 +18,71 @@
   <!-- /.content-header -->
 
   <!-- Main content -->
-  <section class="content">
-    My appointments will goes here..
 
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="row" >
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Registered Users Record</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <app-loader *ngIf="loading"></app-loader>
+              <table *ngIf="!loading" id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>DOB</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Country</th>
+                  <th>Email</th>
+                  <th>Contact #</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of patientDetails">
+                  <td>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</td>
+                  <td>{{ user.gender }}</td>
+                  <td>{{ user.dob }}</td>
+                  <td>{{ user.city }}</td>
+                  <td>{{ user.state }}</td>
+                  <td>{{ user.country }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phone_number }}</td>
+                  <td>
+                    sadf
+                  </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>DOB</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Country</th>
+                  <th>Email</th>
+                  <th>Contact #</th>
+                  <th>Action</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
   </section>
   <!-- /.content -->
 </div>

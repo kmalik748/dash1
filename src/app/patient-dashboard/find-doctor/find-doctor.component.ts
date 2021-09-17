@@ -5,6 +5,7 @@ import {DocSearchesInterface} from "../../dataTypes/docSearches.interface";
 import {DocTimingsInterface} from "../../dataTypes/docTimings.interface";
 import {AuthService} from "../../auth/auth-service.service";
 import {UsersDetailsInterface} from "../../dataTypes/users.interface";
+import {PatientDashboardLayoutComponent} from "../../layouts/patient-dashboard-layout/patient-dashboard-layout.component";
 declare var $: any;
 
 
@@ -28,7 +29,8 @@ export class FindDoctorComponent implements OnInit {
   patientDetails: UsersDetailsInterface;
   doctorDetails: { fees: any; name: any; id: any; } | undefined;
 
-  constructor(private patientService: PatientService, private authService: AuthService) {
+  constructor(private patientService: PatientService,
+              private authService: AuthService) {
     this.patientDetails = {
       id: 0,
       first_name: '',
@@ -59,7 +61,7 @@ export class FindDoctorComponent implements OnInit {
 
   saveAppointment(): void{
     this.loading = true;
-    this.patientService.saveAppointment().subscribe(data=>{
+    this.patientService.saveAppointment(this.patientDetails.id, this.doctorDetails?.id, this.finalDate, this.finalTIme).subscribe(data=>{
       console.log(data);
       if(data.Result){
         $(document).Toasts('create', {
