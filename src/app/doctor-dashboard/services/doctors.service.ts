@@ -1,10 +1,9 @@
-import { Injectable, Pipe } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {FormGroup} from "@angular/forms";
-import {Observable, throwError} from "rxjs";
+import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {AuthService} from "../../auth/auth-service.service";
-import {catchError, map} from "rxjs/operators";
 import {UsersDetailsInterface} from "../../dataTypes/users.interface";
 
 @Injectable({
@@ -14,6 +13,7 @@ export class DoctorsService {
 
   private updateProfileAPI = environment.API_PATH+'doctor/updateProfileData.php';
   private getProfileAPI = environment.API_PATH+'doctor/getProfileData.php';
+  private getAppointmentsAPI = environment.API_PATH+'doctor/getAppointments.php';
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }
@@ -40,4 +40,13 @@ export class DoctorsService {
       {token: token}
     );
   }
+
+  getAppointments(doctorID: Number): Observable<any>{
+    return  this.http.post<any>(
+      this.getAppointmentsAPI,
+      {doctorID: doctorID}
+    );
+  }
+
+
 }
