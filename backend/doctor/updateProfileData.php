@@ -22,7 +22,7 @@ try {
   $decoded = JWT::decode($token, SECRET_KEY, array(ALGORITHM));
   $data = (array) $decoded;
   $array = json_decode(json_encode($data["data"]), true);
-  $uid= $array["id"];
+  $uid = $output["docID"] = $array["id"];
 
   $dates = explode("-",$availability);
   $timestamp1 = substr($dates[0], 0, -1);;

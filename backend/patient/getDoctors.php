@@ -27,7 +27,7 @@ $output["TotalRows"] = mysqli_num_rows($run);
 if(mysqli_num_rows($run)){
   $output["Success"] = true;
   while($row = mysqli_fetch_array($run, MYSQLI_ASSOC)){
-    $id = $row["id"];
+    $id = $row["doctor_id"];
 
     $days = array();
     $from_date = new DateTime($row["startTime"]);
@@ -50,11 +50,12 @@ if(mysqli_num_rows($run)){
 
     $doctor["startTime"] = date('g:i A', strtotime($row["startTime"]));
     $doctor["endTime"] = date('g:i A', strtotime($row["endTime"]));
-    $constructs ="SELECT * FROM users WHERE id=$id";
-    $res = mysqli_query($con, $constructs);
-    $row = mysqli_fetch_array($res, MYSQLI_ASSOC);
-    $doctor["id"] = $row["id"];
-    $doctor["fullName"] = $row["first_name"].' '.$row["middle_name"].' '.$row["last_name"];
+    $qry ="SELECT * FROM users WHERE id=$id";
+//    $doctor["qry"] = $qry;
+    $res = mysqli_query($con, $qry);
+    $row1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
+    $doctor["id"] = $row1["id"];
+    $doctor["fullName"] = $row1["first_name"].' '.$row1["middle_name"].' '.$row1["last_name"];
     array_push($output["Doctors"], $doctor);
   }
 }

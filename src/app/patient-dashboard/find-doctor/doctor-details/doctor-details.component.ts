@@ -16,7 +16,7 @@ export class DoctorDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.doctor.fullName);
+    console.log(this.doctor);
 
     var apiTags =JSON.parse(this.doctor.tags);
     for (let key of Object.keys(apiTags)) {

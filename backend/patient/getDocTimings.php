@@ -5,14 +5,13 @@ $output = array("Success"=>false);
 $data = json_decode(file_get_contents("php://input"));
 $docID = secure_parm($data->docID);
 
-$s = "SELECT * FROM doctors WHERE id=$docID";
+$s = "SELECT * FROM doctors WHERE doctor_id=$docID";
 $r = mysqli_query($con, $s);
-$row = mysqli_fetch_array($r);
+$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
 //echo date('H:i', strtotime($row["startTime"]));
 //echo "<br>";
 //echo date('H:i', strtotime($row["endTime"]));
-
 
 $slots = getTimeSlot(30, $row["startTime"], $row["endTime"]);
 
@@ -30,7 +29,7 @@ function getTimeSlot($interval, $start_time, $end_time)
   $end = new DateTime($end_time);
   $startTime = $start->format($timeFormat);
   $endTime = $end->format($timeFormat);
-//  echo $endTime; exit(); die();
+//  echo $start_time.' - '.$end_time; exit(); die();
   $times = array();
   while(strtotime($startTime) <= strtotime($endTime)){
     $time = array();
