@@ -3,6 +3,7 @@ import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
   isLoggedIn = false;
   userName = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   signUp(data: FormGroup): Observable<any> {
     return this.http.post(
@@ -69,5 +71,6 @@ export class AuthService {
     this.userName = "";
     this.isLoggedIn = false;
     localStorage.removeItem(this.authTokenName);
+    this.router.navigate(['auth']);
   }
 }

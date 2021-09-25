@@ -22,57 +22,51 @@
   <section class="content">
     <div class="container-fluid">
 
-      <div class="row" >
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Registered Users Record</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <app-loader *ngIf="loading"></app-loader>
-              <table *ngIf="!loading" id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th> <i class="fas fa-briefcase-medical"></i> Doctor</th>
-                  <th> <i class="fas fa-calendar-day"></i> Appointment Date</th>
-                  <th> <i class="fas fa-clock"></i> Appointment Time</th>
-                  <th> <i class="fas fa-calendar-check"></i> Booking Time</th>
-                  <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let appointment of appointments">
-                  <td>{{ appointment.id }}</td>
-                  <td><img [src]="appointment.pic" class="img-circle img-sm mr-2"> {{ appointment.DoctorName }}</td>
-                  <td>{{ appointment.date }}</td>
-                  <td>{{ appointment.time }}</td>
-                  <td>{{ appointment.timestamp }}</td>
-                  <td>
-                    <a class="btn btn-primary" [routerLink]="['/meeting', 'join', appointment.docID+patientDetails.id]">
-                      <i class="fas fa-video mr-1"></i> Join Now
-                    </a>
-                  </td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>#</th>
-                  <th> <i class="fas fa-briefcase-medical"></i> Doctor</th>
-                  <th> <i class="fas fa-calendar-day"></i> Appointment Date</th>
-                  <th> <i class="fas fa-clock"></i> Appointment Time</th>
-                  <th> <i class="fas fa-calendar-check"></i> Booking Time</th>
-                  <th>Actions</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
+      <div class="testimonial-carousel  d-flex flex-wrap align-content-around">
+        <div class="testimonial-item"  *ngFor="let appointment of appointments">
+          <div class="testimonial-img d-flex">
+            <img [src]="appointment.pic" alt="testemonial img" style="max-height: 80px;">
+              <div class="d-flex flex-column">
+                <div class="d-flex">
+                  <h3>{{ appointment.DoctorName }}</h3>
+                  <p>{{ appointment.specialty }}</p>
+                </div>
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
           </div>
-          <!-- /.card -->
+          <div class="apt-details d-flex justify-content-center flex-column">
+            <div class="apt-item">
+              <h3>
+                <i class="fas fa-calendar-day"></i> Booking Time
+              </h3>
+              <p>{{appointment.timestamp}}</p>
+            </div>
+            <div class="apt-item">
+              <h3>
+                <i class="fas fa-clock"></i>  Appointment Date
+              </h3>
+              <p>{{appointment.date}}</p>
+            </div>
+            <div class="apt-item">
+              <h3>
+                <i class="fas fa-calendar-check"></i>  Appointment Time
+              </h3>
+              <p>{{appointment.time}}</p>
+            </div>
+
+            <a class="btn btn-primary mt-2 joinBtn"
+               [routerLink]="['/meeting', 'join', appointment.docID+patientDetails.id]">
+              <i class="fas fa-video mr-1"></i> <span>Join Now</span>
+            </a>
+          </div>
+
         </div>
-        <!-- /.col -->
       </div>
       <!-- /.row -->
     </div>

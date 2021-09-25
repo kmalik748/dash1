@@ -19,3 +19,13 @@
   color: #dc3545;
   border: 1px solid #dc3545;
 }
+
+.bg-primary, .btn-primary{
+  background-color: #0070c0 !important;
+}
+.text-primary{
+  color: #0070c0 !important;
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+  background-color: #0070c0 !important;
+}

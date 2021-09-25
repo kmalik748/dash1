@@ -1,0 +1,69 @@
+.testimonial-item{
+  box-shadow: 0 0 20px 0 #00000030;
+  margin: 25px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 30px;
+}
+.testimonial-img img{
+  border-radius: 50%;
+  border: 5px solid #0070c0;
+}
+.testimonial-img h3{
+  font-size: 26px;
+  margin: 5px 5px 0px 20px;
+  font-weight: 600;
+}
+.testimonial-img p{
+  margin-top: 10px;
+}
+.testimonial-item .testimonial-post{
+  font-weight: 300;
+}
+.testimonial-item .rating i{
+  color: #f5ae10;
+  margin-left: 5px;
+}
+
+.apt-details{
+  margin: 20px 0px;
+  font-size: 16px;
+  line-height: 25px;
+}
+.apt-item{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #00000029;
+}
+.apt-item:nth-last-child(2){
+  border-bottom: none;
+}
+.apt-item h3{
+  font-size: 17px;
+}
+.apt-item p{
+  margin-top: 8px;
+  margin-left: 10px;
+}
+.joinBtn {
+  position: relative;
+}
+.joinBtn span{
+  transition: .3s all ease;
+}
+.joinBtn i{
+  position: absolute;
+  opacity: 1;
+  transition: .3s all ease;
+  left: 24%;
+  top: 30%;
+}
+.joinBtn:hover i{
+  left: 27%;
+}
+.joinBtn:hover span{
+  margin-left: 10px;
+}
+.joinBtn:hover{
+  box-shadow: 0 0 20px 0 #000000ab;
+}

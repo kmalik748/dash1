@@ -27,6 +27,14 @@ if(mysqli_num_rows($r)){
     $appointment["timestamp"] =
     $appointment["timestamp"] = date_format(date_create($row["datetime"]),"d M, Y h:i a");
 //    $appointment["timestamp"] = $row["datetime"];
+
+
+    $sql = "SELECT * FROM doctors WHERE doctor_id = $docID";
+    $res = mysqli_query($con, $sql);
+    $r1 = mysqli_fetch_array($res);
+    $appointment["specialty"] = $r1["specialty"];
+
+
     array_push($output["data"], $appointment);
   }
 }
