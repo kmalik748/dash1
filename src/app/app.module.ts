@@ -11,6 +11,8 @@ import {AuthGuard} from "./guards/auth.guard";
 import { PatientDashboardLayoutComponent } from './layouts/patient-dashboard-layout/patient-dashboard-layout.component';
 import { DoctorDashboardLayoutComponent } from './layouts/doctor-dashboard-layout/doctor-dashboard-layout.component';
 import { MeetingLayoutComponent } from './layouts/meeting-layout/meeting-layout.component';
+import { HomepageComponent } from './layouts/homepage/homepage.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -20,12 +22,14 @@ import { MeetingLayoutComponent } from './layouts/meeting-layout/meeting-layout.
     AuthLayoutComponent,
     PatientDashboardLayoutComponent,
     DoctorDashboardLayoutComponent,
-    MeetingLayoutComponent
+    MeetingLayoutComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    BrowserAnimationsModule,
     HttpClientModule
   ],
   providers: [AuthGuard],

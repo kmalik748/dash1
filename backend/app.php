@@ -18,15 +18,15 @@ function secure_parm($parm){
   return $parm;
 }
 
+$servername = "server127.web-hosting.com";
+$username = "turkvjwp_fingerprinttest";
+$password = "fingerprinttest";
+$dbname = "turkvjwp_aivizo";
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "project_aivizo";
-
-//$servername = "server127.web-hosting.com";
-//$username = "turkvjwp_fingerprinttest";
-//$password = "fingerprinttest";
-//$dbname = "turkvjwp_aivizo";
 
 
 $con = mysqli_connect($servername, $username, $password, $dbname);

@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  API_PATH: 'https://turktronics.com/aivizo_backend'
+  production: true,
+  API_PATH: 'https://kashifali.me/aivizo_backend/'
 };

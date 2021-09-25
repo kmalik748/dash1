@@ -64,7 +64,17 @@ export class RegisterComponent implements OnInit {
         this.notificationSuccessRegister();
         this.router.navigate(['/']);
         this.rqstSent = false;
-      });
+      },
+        error => {
+          $(document).Toasts('create', {
+            class: 'bg-danger',
+            title: 'Login Failed',
+            subtitle: 'Just Now',
+            body: 'Your request cannot be proceeded due to some technical issues.'
+          });
+          this.rqstSent = false;
+        }
+      );
   }
 
   notificationSuccessRegister(){

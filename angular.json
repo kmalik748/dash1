@@ -32,7 +32,8 @@
               "src/assets/plugins/datatables/dataTables.bootstrap4.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/assets/plugins/daterangepicker/daterangepicker.css",
-              "node_modules/bs-stepper/dist/css/bs-stepper.min.css"
+              "node_modules/bs-stepper/dist/css/bs-stepper.min.css",
+              "src/assets/homepage/css/style.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
