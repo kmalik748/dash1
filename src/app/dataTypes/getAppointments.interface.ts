@@ -9,4 +9,5 @@ export interface getAppointmentsInterface {
   date: string,
   timestamp: string,
   specialty?: string
+  email?: string
 }

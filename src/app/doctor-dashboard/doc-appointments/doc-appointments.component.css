@@ -1,0 +1,84 @@
+.testimonial-item{
+  box-shadow: 0 0 20px 0 #00000030;
+  margin: 25px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 30px;
+  position: relative;
+}
+.testimonial-item i#icon{
+  position: absolute;
+  top: 13%;
+  right: 6%;
+  border-radius: 50%;
+  color: #0070c047;
+  font-size: 100px;
+  font-weight: 600;
+  transition: .3s all ease;
+  /*opacity: 0;*/
+}
+.testimonial-item:hover i#icon{
+  transform: rotate(-40deg);
+}
+.testimonial-img img{
+  border-radius: 50%;
+  border: 5px solid #0070c0;
+}
+.testimonial-img h3{
+  font-size: 26px;
+  margin: 0px 5px 0px 20px;
+  font-weight: 600;
+}
+.testimonial-img p{
+  margin-top: 10px;
+}
+.docDetails p{
+  margin: 5px 5px 0px 20px;
+}
+.align-self-start{
+  align-self: self-start;
+}
+.testimonial-item .testimonial-post{
+  font-weight: 300;
+}
+.rating{
+  margin: 0px 5px 0px 20px;
+}
+.testimonial-item .rating i{
+  color: #f5ae10;
+  margin-left: 5px;
+}
+
+.apt-details{
+  margin: 20px 0px;
+  font-size: 16px;
+  line-height: 25px;
+}
+.apt-item{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #00000029;
+}
+.apt-item:nth-last-child(2){
+  border-bottom: none;
+}
+.apt-item h3{
+  font-size: 17px;
+}
+.apt-item p{
+  margin-top: 8px;
+  margin-left: 10px;
+}
+.joinBtn span{
+  transition: .3s all ease;
+}
+
+.joinBtn:hover{
+  transform: scale(1.04);
+}
+.joinBtn:hover{
+  box-shadow: 0 0 20px 0 #00000096;
+}
+h3#docName{
+  align-self: flex-start;
+}

@@ -22,6 +22,7 @@ if(mysqli_num_rows($r)){
     $appointment["id"] = $row["id"];
     $appointment["userType"] = $r1["userType"];
     $appointment["PatientName"] = $r1["first_name"].' '.$r1["middle_name"].' '.$r1["last_name"];
+    $appointment["email"] = $r1["email"];
     $appointment["pic"] = "https://picsum.photos/300/300";
 //    $appointment["time"] = $row["apnt_time"];
     $appointment["time"] =  date_format(date_create($row["apnt_time"])," h:i a");

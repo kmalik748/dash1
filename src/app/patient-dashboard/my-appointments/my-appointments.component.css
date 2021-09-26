@@ -4,6 +4,21 @@
   text-align: center;
   border-radius: 10px;
   padding: 20px 30px;
+  position: relative;
+}
+.testimonial-item i#icon{
+  position: absolute;
+  top: 13%;
+  right: 6%;
+  border-radius: 50%;
+  color: #0070c047;
+  font-size: 100px;
+  font-weight: 600;
+  transition: .3s all ease;
+  /*opacity: 0;*/
+}
+.testimonial-item:hover i#icon{
+  transform: rotate(-40deg);
 }
 .testimonial-img img{
   border-radius: 50%;
@@ -11,14 +26,23 @@
 }
 .testimonial-img h3{
   font-size: 26px;
-  margin: 5px 5px 0px 20px;
+  margin: 0px 5px 0px 20px;
   font-weight: 600;
 }
 .testimonial-img p{
   margin-top: 10px;
 }
+.docDetails p{
+  margin: 5px 5px 0px 20px;
+}
+.align-self-start{
+  align-self: self-start;
+}
 .testimonial-item .testimonial-post{
   font-weight: 300;
+}
+.rating{
+  margin: 0px 5px 0px 20px;
 }
 .testimonial-item .rating i{
   color: #f5ae10;
@@ -45,25 +69,16 @@
   margin-top: 8px;
   margin-left: 10px;
 }
-.joinBtn {
-  position: relative;
-}
 .joinBtn span{
-  transition: .3s all ease;
+    transition: .3s all ease;
 }
-.joinBtn i{
-  position: absolute;
-  opacity: 1;
-  transition: .3s all ease;
-  left: 24%;
-  top: 30%;
-}
-.joinBtn:hover i{
-  left: 27%;
-}
-.joinBtn:hover span{
-  margin-left: 10px;
+
+.joinBtn:hover{
+  transform: scale(1.04);
 }
 .joinBtn:hover{
-  box-shadow: 0 0 20px 0 #000000ab;
+  box-shadow: 0 0 20px 0 #00000096;
+}
+h3#docName{
+  align-self: flex-start;
 }
