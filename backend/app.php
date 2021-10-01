@@ -25,12 +25,12 @@ $dbname = "turkvjwp_aivizo";
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "password@123";
 $dbname = "project_aivizo";
 
 $servername = "localhost";
 $username = "root";
-$password = "password@123";
+$password = "";
 $dbname = "project_aivizo";
 
 
