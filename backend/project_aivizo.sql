@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 14, 2021 at 10:52 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.30
+-- Host: localhost:3306
+-- Generation Time: Oct 01, 2021 at 05:34 AM
+-- Server version: 8.0.26-0ubuntu0.20.04.3
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,21 +29,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointments` (
-  `id` int(50) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `doctor_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `patient_id` int NOT NULL,
+  `doctor_id` int NOT NULL,
   `apnt_date` date NOT NULL,
   `apnt_time` time NOT NULL,
-  `datetime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `user_id`, `doctor_id`, `apnt_date`, `apnt_time`, `datetime`) VALUES
-(1, 4, 5, '2021-09-11', '11:59:00', '2021-09-11 10:52:18'),
-(2, 3, 2, '2021-09-11', '10:46:45', '2021-09-11 05:57:01');
+INSERT INTO `appointments` (`id`, `patient_id`, `doctor_id`, `apnt_date`, `apnt_time`) VALUES
+(5, 178, 159, '2021-09-23', '05:30:00');
 
 -- --------------------------------------------------------
 
@@ -51,23 +51,23 @@ INSERT INTO `appointments` (`id`, `user_id`, `doctor_id`, `apnt_date`, `apnt_tim
 --
 
 CREATE TABLE `doctors` (
-  `id` int(10) NOT NULL,
-  `doctor_id` int(10) NOT NULL,
+  `id` int NOT NULL,
+  `doctor_id` int NOT NULL,
   `specialty` varchar(200) NOT NULL,
   `qualification` varchar(200) NOT NULL,
-  `fees` int(10) NOT NULL,
+  `fees` int NOT NULL,
   `availability` varchar(100) DEFAULT NULL,
-  `tags` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`tags`)),
+  `tags` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `startTime` timestamp(6) NULL DEFAULT NULL,
   `endTime` timestamp(6) NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
 --
 -- Dumping data for table `doctors`
 --
 
 INSERT INTO `doctors` (`id`, `doctor_id`, `specialty`, `qualification`, `fees`, `availability`, `tags`, `startTime`, `endTime`) VALUES
-(4, 159, '4', '43', 43, '09/14/2021 12:00 AM - 09/14/2021 11:59 PM', '{\"0\":\"kasif\",\"1\":\"ali\",\"2\":\"rb\"}', '2021-09-14 07:09:00.000000', '2021-09-14 10:09:00.000000');
+(4, 159, 'Skin Specialist', 'MBBS', 150, '10/01/2021 06:00 AM - 10/02/2021 08:00 AM', '{\"0\":\"kasif\",\"1\":\"ali\",\"2\":\"rb\"}', '2021-10-01 06:00:00.000000', '2021-10-02 08:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ INSERT INTO `doctors` (`id`, `doctor_id`, `specialty`, `qualification`, `fees`, 
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE `users` (
   `password` varchar(50) NOT NULL,
   `gender` varchar(20) NOT NULL,
   `userType` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -130,7 +130,7 @@ INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `dob`, `pho
 (32, 'Francesco', 'Younie', 'Redford', '2021-01-31', '303-845-2881', 'Pivijay', NULL, 'Colombia', 'ryouniev@howstuffworks.com', 'PmncivyV1U27', 'Other', 'Patient'),
 (33, 'Daphne', 'Wharton', 'Weider', '2021-06-11', '171-872-4609', 'Basseterre', NULL, 'Saint Kitts and Nevis', 'wwhartonw@uiuc.edu', 'g07tBdZvn', 'Male', 'Patient'),
 (34, 'Gordan', 'Masding', 'Cheston', '2021-02-11', '808-936-0856', 'Hayes', NULL, 'Jamaica', 'cmasdingx@nature.com', 'NI2cmHSR', 'Other', 'Patient'),
-(35, 'Annabal', 'Vernay', 'Neville', '2021-03-03', '745-794-3869', 'Rzeszów', NULL, 'Poland', 'nvernayy@twitpic.com', '2we7m6', 'Male', 'Admin'),
+(35, 'Annabal', 'Vernay', 'Neville', '2021-03-03', '745-794-3869', 'Rzeszów', 'dgdfg', 'Poland', 'nvernayy@twitpic.com', '2we7m6', 'Male', 'Admin'),
 (36, 'Jerrie', 'Wodham', 'Casey', '2020-11-25', '818-746-7741', 'Bamban', NULL, 'Indonesia', 'cwodhamz@spotify.com', 'cwodhamz@spotify.com', 'Female', 'Doctor'),
 (37, 'Gwen', 'Sorton', 'Julian', '2020-10-21', '585-813-3202', 'Kebonkai', NULL, 'Indonesia', 'jsorton10@ebay.co.uk', 'h4HatYv4PJW', 'Other', 'Admin'),
 (38, 'Marchelle', 'Dedham', 'Leicester', '2021-03-11', '505-249-8087', 'Akonolinga', NULL, 'Cameroon', 'ldedham11@csmonitor.com', 'ta9vaNy5', 'Male', 'Admin'),
@@ -249,11 +249,12 @@ INSERT INTO `users` (`id`, `first_name`, `middle_name`, `last_name`, `dob`, `pho
 (151, 'b', 'b', 'b', '2021-09-10', 'b', 'b', 'b', 'b', 'a@a', 'bb', 'Other', 'Patient'),
 (153, 'Kashif', 'Ali', 'Rabbani', '2021-09-09', '03118547875', 'Rwp', 'Punjab', 'Pakistan', 'kashif@ali.com', 'kashif@123', 'Male', 'Admin'),
 (159, 'test', '', '', '2021-09-09', '2332', 'ds', NULL, 'sdf', 'doc@tor.com', 'doc@tor.com', '', 'Doctor'),
-(174, '', '', '', '0000-00-00', '', '', NULL, '', '', '', '', ''),
 (175, 'asfd', 'adsffdfsa', 'afdaf', '2021-09-08', '4443', 'asdfasdf', NULL, 'dsfsdf', 'jj@d.d', 'jj@d.d', 'Other', 'Doctor'),
 (176, 'gg', 'g', 'g', '2021-09-23', '4', 'a', NULL, 'd', 'm@m.m', 'm@m.m', 'Other', 'Patient'),
 (177, 'Doctor', 'Testing', 'User', '2021-09-11', '+92584256', 'Cityher', NULL, 'def', 'doctor@user.com', 'doctor@user.com', '', 'Doctor'),
-(178, 'Patient', 'User', 'test', '2021-09-08', '+925555555', 'abc', NULL, 'ghi', 'patient@123.com', 'patient@123.com', 'Female', 'Patient');
+(178, 'Patient', 'User', 'test', '2021-09-08', '+925555555', 'abc', NULL, 'ghi', 'patient@123.com', 'patient@123.com', 'Female', 'Patient'),
+(179, 'asf', 'asf', 'asf', '2021-10-01', '4444', 'asf', NULL, 'asfasf', 'asdf@asf.asf', 'iiiiiii', 'Female', 'Patent'),
+(180, 'as', 'asf', 'asfd', '2021-09-27', '3', 'sadf', NULL, 'asdf', 'asf@dsaf.i', 'asf@dsaf.i', 'Other', 'Patient');
 
 --
 -- Indexes for dumped tables
@@ -285,19 +286,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -28,6 +28,11 @@ $username = "root";
 $password = "";
 $dbname = "project_aivizo";
 
+$servername = "localhost";
+$username = "root";
+$password = "password@123";
+$dbname = "project_aivizo";
+
 
 $con = mysqli_connect($servername, $username, $password, $dbname);
 if(!$con){
