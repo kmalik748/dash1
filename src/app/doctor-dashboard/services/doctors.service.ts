@@ -14,6 +14,8 @@ export class DoctorsService {
   private updateProfileAPI = environment.API_PATH+'doctor/updateProfileData.php';
   private getProfileAPI = environment.API_PATH+'doctor/getProfileData.php';
   private getAppointmentsAPI = environment.API_PATH+'doctor/getAppointments.php';
+  private savePrescriptionAPI = environment.API_PATH+'doctor/savePrescription.php';
+  private getPrescriptionAPI = environment.API_PATH+'doctor/getPrescription.php';
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }
@@ -48,5 +50,19 @@ export class DoctorsService {
     );
   }
 
+
+  getPrescription(appointment: number): Observable<any>{
+    return  this.http.post<any>(
+      this.getPrescriptionAPI,
+      {appointmentID: appointment}
+    );
+  }
+
+  savePrescription(prescription: string, appointment: number): Observable<any>{
+    return  this.http.post<any>(
+      this.savePrescriptionAPI,
+      {prescription: prescription, appointment: appointment}
+    );
+  }
 
 }

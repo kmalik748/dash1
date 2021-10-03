@@ -1,0 +1,21 @@
+.joinBtn{
+  border-radius: 20px;
+}
+.joinBtn span{
+  transition: .3s all ease;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.joinBtn:hover{
+  /*background-color: white !important;*/
+  box-shadow: 0 0 16px 0 #000000b0 !important;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #0070c0;
+  border-color: #0070c0;
+}

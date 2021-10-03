@@ -59,7 +59,7 @@
   align-items: center;
   border-bottom: 1px solid #00000029;
 }
-.apt-item:nth-last-child(2){
+.apt-item:nth-last-child(1){
   border-bottom: none;
 }
 .apt-item h3{
@@ -69,15 +69,22 @@
   margin-top: 8px;
   margin-left: 10px;
 }
+.joinBtn{
+  border-radius: 20px;
+}
 .joinBtn span{
   transition: .3s all ease;
 }
 
 .joinBtn:hover{
-  transform: scale(1.04);
+  background-color: white !important;
+  box-shadow: 0 0 16px 0 #000000b0 !important;
 }
-.joinBtn:hover{
-  box-shadow: 0 0 20px 0 #00000096;
+.joinBtn:hover span{
+  color: #0070c0;
+}
+.joinBtn:hover span i{
+  color: #0070c0;
 }
 h3#docName{
   align-self: flex-start;

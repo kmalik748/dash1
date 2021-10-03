@@ -7,11 +7,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FindDoctorComponent } from './find-doctor/find-doctor.component';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 import { DoctorDetailsComponent } from './find-doctor/doctor-details/doctor-details.component';
+import { PrescriptionComponent } from './prescription/prescription.component';
 
 export const routes: Routes = [
   { path: '', component: PatientHomeComponent },
   { path: 'find-doctor', component: FindDoctorComponent },
-  { path: 'my-appointments', component: MyAppointmentsComponent }
+  { path: 'my-appointments', component: MyAppointmentsComponent },
+  { path: 'prescription', component: PrescriptionComponent }
 ];
 
 @NgModule({
@@ -19,15 +21,16 @@ export const routes: Routes = [
     PatientHomeComponent,
     FindDoctorComponent,
     MyAppointmentsComponent,
-    DoctorDetailsComponent
+    DoctorDetailsComponent,
+    PrescriptionComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        SharedModule,
-        ReactiveFormsModule,
-        FormsModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   exports: [
     RouterModule
   ]
