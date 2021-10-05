@@ -5,6 +5,12 @@ import {Router} from "@angular/router";
 import {AuthService} from "../auth-service.service";
 declare var $: any;
 
+import {
+  SearchCountryField,
+  TooltipLabel,
+  CountryISO
+} from "ngx-intl-tel-input";
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,6 +21,15 @@ export class RegisterComponent implements OnInit {
   signupForm: FormGroup;
   rqstSent = false;
 
+  SearchCountryField = SearchCountryField;
+  TooltipLabel = TooltipLabel;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.Qatar];
+  phoneForm = new FormGroup({
+    phone: new FormControl("", [Validators.required])
+  });
+
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private authService: AuthService) {
@@ -24,9 +39,6 @@ export class RegisterComponent implements OnInit {
       lastname: [''],
       dob: ['', Validators.required],
       phone: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
       gender: [''],
       userType: [''],
       email: ['', [Validators.required, Validators.email], this.isEmailUnique.bind(this)],
@@ -55,14 +67,25 @@ export class RegisterComponent implements OnInit {
     $('#reservationdate').datetimepicker({
       format: 'L'
     });
+
+    this.phoneForm.patchValue({
+      number: "+97431422391",
+      internationalNumber: "+974 3142 2391",
+      nationalNumber: "3142 2391",
+      countryCode: "QA",
+      dialCode: "+974"
+    });
+
   }
 
   submitSignup(){
     this.rqstSent = true;
+    // console.log(var temp = this.signupForm.get('phone')?.value);
+
       this.authService.signUp(this.signupForm).subscribe(data => {
         console.log(data);
         this.notificationSuccessRegister();
-        this.router.navigate(['/']);
+        this.router.navigate(['auth', 'login']);
         this.rqstSent = false;
       },
         error => {
@@ -84,6 +107,10 @@ export class RegisterComponent implements OnInit {
       subtitle: 'Just Now',
       body: 'Account was created successfully, please login to continue...'
     });
+  }
+
+  onCountryChange(event: any){
+    console.log(event);
   }
 
 }

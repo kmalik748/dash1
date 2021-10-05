@@ -8,6 +8,7 @@ import { AllUsersComponent } from './all-users/all-users.component';
 import { AddUsersComponent } from './add-users/add-users.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { EditUserComponent } from './edit-user/edit-user.component';
+import {NgxIntlTelInputModule} from "ngx-intl-tel-input";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,7 +31,8 @@ export const routes: Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxIntlTelInputModule
     ],
   exports: [
     RouterModule

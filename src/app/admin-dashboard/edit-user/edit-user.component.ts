@@ -7,6 +7,12 @@ import {UsersDetailsInterface} from "../../dataTypes/users.interface";
 import {UsersService} from "../services/users.service";
 declare var $: any;
 
+import {
+  SearchCountryField,
+  TooltipLabel,
+  CountryISO
+} from "ngx-intl-tel-input";
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -19,6 +25,14 @@ export class EditUserComponent implements OnInit, OnDestroy {
   sub: any = 0;
   userDetails: UsersDetailsInterface | any;
 
+  SearchCountryField = SearchCountryField;
+  TooltipLabel = TooltipLabel;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.Qatar];
+  phoneForm = new FormGroup({
+    phone: new FormControl("", [Validators.required])
+  });
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private authService: AuthService,
@@ -30,9 +44,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
       lastname: [''],
       dob: ['', Validators.required],
       phone: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
       gender: [''],
       userType: [''],
       email: ['', [Validators.required, Validators.email]],
@@ -57,9 +68,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
           lastname: data.last_name,
           dob: data.dob,
           phone: data.phone_number,
-          city: data.city,
-          state: data.state,
-          country: data.country,
           gender: data.gender,
           userType: data.userType,
           email: data.email,
@@ -94,6 +102,13 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    this.phoneForm.patchValue({
+      number: "+97431422391",
+      internationalNumber: "+974 3142 2391",
+      nationalNumber: "3142 2391",
+      countryCode: "QA",
+      dialCode: "+974"
+    });
 
   }
 

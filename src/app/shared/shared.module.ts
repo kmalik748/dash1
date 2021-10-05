@@ -4,6 +4,7 @@ import {TopNavComponent} from "./top-nav/top-nav.component";
 import {SideNavComponent} from "./side-nav/side-nav.component";
 import {FooterComponent} from "./footer/footer.component";
 import { LoaderComponent } from './loader/loader.component';
+import { PasswordStrenghtComponent } from './password-strenght/password-strenght.component';
 
 
 
@@ -12,7 +13,8 @@ import { LoaderComponent } from './loader/loader.component';
     TopNavComponent,
     SideNavComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+    PasswordStrenghtComponent
   ],
   imports: [
     CommonModule
@@ -21,7 +23,8 @@ import { LoaderComponent } from './loader/loader.component';
         TopNavComponent,
         SideNavComponent,
         FooterComponent,
-        LoaderComponent
+        LoaderComponent,
+        PasswordStrenghtComponent
     ]
 })
 export class SharedModule { }

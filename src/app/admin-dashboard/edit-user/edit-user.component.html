@@ -23,13 +23,14 @@
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-8 col-xl-8">
         <div class="bg-white w-100 p-2 shadow ">
+
           <form (ngSubmit)="submitEdit()" [formGroup]="signupForm">
             <div class="row">
               <div class="col-sm-4">
                 <!-- text input -->
                 <div class="form-group">
                   <label>First Name</label>
-                  <input type="text" class="form-control" placeholder="John"
+                  <input type="text" class="form-control"
                          formControlName="firstname" [ngClass]="{'is-invalid': signupForm.get('firstname')?.errors
                            && (signupForm.get('firstname')?.touched || signupForm.get('firstname')?.dirty),
                    'is-valid': !signupForm.get('firstname')?.errors && signupForm.get('firstname')?.touched}">
@@ -43,14 +44,14 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <label>Middle Name</label>
-                  <input type="text" class="form-control" placeholder="Doe"
+                  <input type="text" class="form-control"
                          formControlName="middlename">
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" placeholder="Clarie"
+                  <input type="text" class="form-control"
                          formControlName="lastname">
                 </div>
               </div>
@@ -60,7 +61,7 @@
                 <div class="form-group">
                   <label>Date of birth</label>
                   <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="date" class="form-control" data-target="#reservationdate"
+                    <input type="date" class="form-control"
                            formControlName="dob" [ngClass]="{'is-invalid': signupForm.get('dob')?.errors
                            && (signupForm.get('dob')?.touched || signupForm.get('dob')?.dirty),
                    'is-valid': !signupForm.get('dob')?.errors && signupForm.get('dob')?.touched}">
@@ -75,58 +76,18 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Contact Number</label>
-                  <input type="text" class="form-control" placeholder="+92311-4837494"
-                         formControlName="phone" [ngClass]="{'is-invalid': signupForm.get('phone')?.errors
+                  <ngx-intl-tel-input [cssClass]="'form-control mb-3'"  [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                      [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                      [selectFirstCountry]="false"  [tooltipField]="TooltipLabel.Name"
+                                      [phoneValidation]="true" [separateDialCode]="true"
+                                      formControlName="phone" [ngClass]="{'is-invalid': signupForm.get('phone')?.errors
                            && (signupForm.get('phone')?.touched || signupForm.get('phone')?.dirty),
                    'is-valid': !signupForm.get('phone')?.errors && signupForm.get('phone')?.touched}">
+                  </ngx-intl-tel-input>
                   <span class="input_err_msg"
                         *ngIf="signupForm.get('phone')?.errors &&
-                           (signupForm.get('phone')?.touched || signupForm.get('phone')?.dirty)">
+                           (signupForm.get('phone')?.touched)">
                       Contact Number must be filled in
-                    </span>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label>City</label>
-                  <input type="text" class="form-control" placeholder="City Name"
-                         formControlName="city" [ngClass]="{'is-invalid': signupForm.get('city')?.errors
-                           && (signupForm.get('city')?.touched || signupForm.get('city')?.dirty),
-                   'is-valid': !signupForm.get('city')?.errors && signupForm.get('city')?.touched}">
-                  <span class="input_err_msg"
-                        *ngIf="signupForm.get('city')?.errors &&
-                           (signupForm.get('city')?.touched || signupForm.get('city')?.dirty)">
-                      Name must be filled in
-                    </span>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label>State</label>
-                  <input type="text" class="form-control" placeholder="State Name"
-                         formControlName="state" [ngClass]="{'is-invalid': signupForm.get('state')?.errors
-                           && (signupForm.get('state')?.touched || signupForm.get('state')?.dirty),
-                   'is-valid': !signupForm.get('state')?.errors && signupForm.get('state')?.touched}">
-                  <span class="input_err_msg"
-                        *ngIf="signupForm.get('state')?.errors &&
-                           (signupForm.get('state')?.touched || signupForm.get('state')?.dirty)">
-                      State must be filled in
-                    </span>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label>Country Name</label>
-                  <input type="text" class="form-control" placeholder="Country Name"
-                         formControlName="country" [ngClass]="{'is-invalid': signupForm.get('country')?.errors
-                           && (signupForm.get('country')?.touched || signupForm.get('country')?.dirty),
-                   'is-valid': !signupForm.get('country')?.errors && signupForm.get('country')?.touched}">
-                  <span class="input_err_msg"
-                        *ngIf="signupForm.get('country')?.errors &&
-                           (signupForm.get('country')?.touched || signupForm.get('country')?.dirty)">
-                      State must be filled in
                     </span>
                 </div>
               </div>
@@ -135,10 +96,10 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="text" class="form-control" placeholder="user@email.com"
+                  <input type="text" class="form-control"
                          formControlName="email" [ngClass]="{'is-invalid': signupForm.get('email')?.errors
                            && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty),
-                   'is-valid': !signupForm.get('email')?.errors && signupForm.get('email')?.touched}" >
+                   'is-valid': !signupForm.get('email')?.errors && signupForm.get('email')?.touched}">
                   <span *ngIf="signupForm.get('email')?.errors &&
                     (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
                       <span class="input_err_msg" *ngIf="signupForm.get('email')?.hasError('required')">
@@ -155,7 +116,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control" placeholder="user@email.com"
+                  <input type="password" class="form-control"
                          formControlName="password" [ngClass]="{'is-invalid': signupForm.get('password')?.errors
                            && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty),
                    'is-valid': !signupForm.get('password')?.errors && signupForm.get('password')?.touched}">
@@ -164,12 +125,13 @@
                            (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
                       Password cannot be empty
                     </span>
+                  <app-password-strenght [passwordToCheck]="signupForm.controls['password'].value"></app-password-strenght>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Confirm Password</label>
-                  <input type="password" class="form-control" placeholder="user@email.com"
+                  <input type="password" class="form-control"
                          formControlName="confirm_pass" [ngClass]="{'is-invalid': signupForm.get('confirm_pass')?.errors
                            && (signupForm.get('confirm_pass')?.touched || signupForm.get('confirm_pass')?.dirty),
                    'is-valid': !signupForm.get('confirm_pass')?.errors && signupForm.get('confirm_pass')?.touched}">
@@ -186,15 +148,15 @@
                 <div class="form-group d-flex flex-column">
                   <label>Gender</label>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary" [ngClass]="{'active': checkMaleGender()}">
+                    <label class="btn btn-outline-primary active">
                       <input type="radio" formControlName="gender" value="Male" autocomplete="off" checked="">
                       <i class="fas fa-male"></i> Male
                     </label>
-                    <label class="btn btn-outline-primary" [ngClass]="{'active': checkFemaleGender()}">
+                    <label class="btn btn-outline-primary">
                       <input type="radio" formControlName="gender" value="Female" autocomplete="off">
                       <i class="fas fa-female"></i> Female
                     </label>
-                    <label class="btn btn-outline-primary" [ngClass]="{'active': checkOtherGender()}">
+                    <label class="btn btn-outline-primary">
                       <input type="radio" formControlName="gender" value="Other" autocomplete="off">
                       <i class="fas fa-transgender"></i> Other
                     </label>
@@ -205,17 +167,13 @@
                 <div class="form-group d-flex flex-column">
                   <label>User is a</label>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-info" [ngClass]="{'active': userTypeAdmin()}">
-                      <input type="radio" formControlName="userType" value="Admin" autocomplete="off" checked="">
-                      <i class="fas fa-users-cog"></i> Administrator
-                    </label>
-                    <label class="btn btn-outline-info" [ngClass]="{'active': userTypeDoctor()}">
-                      <input type="radio" formControlName="userType" value="Doctor" autocomplete="off" checked="">
+                    <label class="btn btn-outline-info">
+                      <input type="radio" formControlName="userType" value="Doctor">
                       <i class="fas fa-user-md"></i> Doctor
                     </label>
-                    <label class="btn btn-outline-info" [ngClass]="{'active': userTypePatient()}">
-                      <input type="radio" formControlName="userType" value="Patient" autocomplete="off">
-                      <i class="fas fa-procedures"></i> Patient
+                    <label class="btn btn-outline-info">
+                      <input type="radio" formControlName="userType" value="Patient">
+                      <i class="fas fa-procedures"></i> Patent
                     </label>
                   </div>
                 </div>
@@ -225,11 +183,12 @@
               <app-loader *ngIf="rqstSent"></app-loader>
               <button type="submit" class="btn btn-block btn-primary" [disabled]="!signupForm.valid"
                       *ngIf="!rqstSent">
-                <i class="fas fa-user-edit mr-2"></i>
-                Update User
+                <i class="fas fa-user-plus mr-2"></i>
+                Sign up
               </button>
             </div>
           </form>
+
         </div>
       </div>
     </div>

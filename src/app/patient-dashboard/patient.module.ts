@@ -13,7 +13,7 @@ export const routes: Routes = [
   { path: '', component: PatientHomeComponent },
   { path: 'find-doctor', component: FindDoctorComponent },
   { path: 'my-appointments', component: MyAppointmentsComponent },
-  { path: 'prescription', component: PrescriptionComponent }
+  { path: 'prescription/:id', component: PrescriptionComponent }
 ];
 
 @NgModule({

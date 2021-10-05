@@ -5,6 +5,12 @@ import {AuthService} from "../../auth/auth-service.service";
 import {MustMatch} from "../../auth/register/matchPassword";
 declare var $: any;
 
+import {
+  SearchCountryField,
+  TooltipLabel,
+  CountryISO
+} from "ngx-intl-tel-input";
+
 @Component({
   selector: 'app-add-users',
   templateUrl: './add-users.component.html',
@@ -13,6 +19,14 @@ declare var $: any;
 export class AddUsersComponent implements OnInit {
   signupForm: FormGroup;
   rqstSent = false;
+
+  SearchCountryField = SearchCountryField;
+  TooltipLabel = TooltipLabel;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.Qatar];
+  phoneForm = new FormGroup({
+    phone: new FormControl("", [Validators.required])
+  });
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -23,9 +37,6 @@ export class AddUsersComponent implements OnInit {
       lastname: [''],
       dob: ['', Validators.required],
       phone: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
       gender: [''],
       userType: [''],
       email: ['', [Validators.required, Validators.email], this.isEmailUnique.bind(this)],
@@ -53,6 +64,15 @@ export class AddUsersComponent implements OnInit {
     //Date picker
     $('#reservationdate').datetimepicker({
       format: 'L'
+    });
+
+
+    this.phoneForm.patchValue({
+      number: "+97431422391",
+      internationalNumber: "+974 3142 2391",
+      nationalNumber: "3142 2391",
+      countryCode: "QA",
+      dialCode: "+974"
     });
   }
 
