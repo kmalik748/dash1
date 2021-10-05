@@ -1,0 +1,46 @@
+<div class="hold-transition login-page">
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <!--        <span class="h1"><b>Aivizo</b>Online</span>-->
+        <img src="assets/logo.jpg" alt="Aivizo Logo" style="height: 70px">
+      </div>
+      <div class="card-body">
+        <h5 class="login-box-msg text-primary">Enter confirmation code we sent you via E-mail to continue</h5>
+
+        <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="*****" formControlName="email"
+                   [ngClass]="{'is-invalid': loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty),
+                   'is-valid': !loginForm.get('email')?.errors && loginForm.get('email')?.touched}">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-key"></span>
+              </div>
+            </div>
+            <span id="exampleInputPassword1-error" class="input_err_msg" *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+              Please provide a valid Email
+            </span>
+          </div>
+          <div class="social-auth-links text-center mt-2 mb-3">
+            <button type="submit" class="btn btn-block btn-primary" [disabled]="!loginForm.valid || login">
+              <span *ngIf="!login"><i class="fas fa-user-check mr-2"></i> Confirm</span>
+              <span *ngIf="login"><i class="fas fa-spinner fa-spin"></i> Logging In....</span>
+            </button>
+          </div>
+        </form>
+
+
+        <p class="mb-1">
+          <a routerLink="/">I forgot my password</a>
+        </p>
+        <p class="mb-0">
+          <a routerLink="/auth/register" class="text-center">Create a new account</a>
+        </p>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+</div>

@@ -110,7 +110,10 @@
                            (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
                       Password cannot be empty
                     </span>
-                    <app-password-strenght [passwordToCheck]="signupForm.controls['password'].value"></app-password-strenght>
+                    <app-password-strenght
+                      [passwordToCheck]="signupForm.controls['password'].value"
+                      class="text-center">
+                    </app-password-strenght>
                   </div>
                 </div>
                 <div class="col-md-6">

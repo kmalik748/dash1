@@ -13,6 +13,7 @@ import { DoctorDashboardLayoutComponent } from './layouts/doctor-dashboard-layou
 import { MeetingLayoutComponent } from './layouts/meeting-layout/meeting-layout.component';
 import { HomepageComponent } from './layouts/homepage/homepage.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { Page404Component } from './layouts/page404/page404.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     PatientDashboardLayoutComponent,
     DoctorDashboardLayoutComponent,
     MeetingLayoutComponent,
-    HomepageComponent
+    HomepageComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,

@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.router.navigate(['auth', 'verify-account']);
     //Date picker
     $('#reservationdate').datetimepicker({
       format: 'L'
@@ -85,7 +86,7 @@ export class RegisterComponent implements OnInit {
       this.authService.signUp(this.signupForm).subscribe(data => {
         console.log(data);
         this.notificationSuccessRegister();
-        this.router.navigate(['auth', 'login']);
+        this.router.navigate(['/auth/verify-account']);
         this.rqstSent = false;
       },
         error => {

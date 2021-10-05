@@ -17,12 +17,13 @@ $password = secure_parm($data->password);
 $gender = secure_parm($data->gender);
 $userType = secure_parm($data->userType);
 
-$s = "INSERT INTO users SET first_name='$firstname', middle_name='$middlename',  last_name='$lastname',
-      gender='$gender', dob='$dob', city='$city', country='$country', email='$email', userType='$userType',
-      phone_number='$phone', password='$password'";
+$s = "INSERT INTO users SET first_name='$firstname', middle_name='$middlename',  last_name='$lastname',gender='$gender', dob='$dob', city='$city', country='$country', email='$email', userType='$userType',phone_number='$phone', password='$password'";
+
+$output["sql"] = $s;
 
 if(mysqli_query($con, $s)){
   $output["Success"] = true;
+  $output["userID"] = mysqli_insert_id($con);
 }else{
   $output["Error"] = mysqli_error($con);
 }
