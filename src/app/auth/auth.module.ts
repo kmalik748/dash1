@@ -7,16 +7,18 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 import {NgxIntlTelInputModule} from "ngx-intl-tel-input";
 import { VerifyAccountComponent } from './verify-account/verify-account.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component:  RegisterComponent},
-  { path: 'verify-account/:id', component:  VerifyAccountComponent}
+  { path: 'verify-account/:id', component:  VerifyAccountComponent},
+  { path: 'forgot-password', component:  ForgetPasswordComponent},
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, VerifyAccountComponent],
+  declarations: [LoginComponent, RegisterComponent, VerifyAccountComponent, ForgetPasswordComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),

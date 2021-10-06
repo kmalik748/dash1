@@ -11,7 +11,7 @@ $userID = secure_parm($data->userID);
 $timestamp = secure_parm($data->timestamp);
 $token = rand(0, 999999);
 
-$s = "INSERT INTO signupemailtoken (userID, token, date_time) VALUES ($userID, '$token', '$timestamp')";
+$s = "INSERT INTO signupemailtoken (userID, token, type, date_time) VALUES ($userID, '$token', 'emailVerification', '$timestamp')";
 
 if(mysqli_query($con, $s)){
   $output["Success"] = true;

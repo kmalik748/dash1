@@ -15,6 +15,7 @@ export class AuthService {
   validate_sessionAPI = environment.API_PATH+'auth/validate_session.php';
   signUpVerifyTokenAPI = environment.API_PATH+'auth/signUpVerifyToken.php';
   signUpSendTokenAPI = environment.API_PATH+'auth/signUpSendToken.php';
+  forgetPasswordAPI = environment.API_PATH+'auth/forgetPassword.php';
 
   authTokenName = 'token';
   isLoggedIn = false;
@@ -97,6 +98,21 @@ export class AuthService {
       {
         userID: userID,
         token: token
+      }
+    );
+  }
+
+  forgetPassword(email: string): Observable<any>{
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    return this.http.post(
+      this.forgetPasswordAPI,
+      {
+        email: email,
+        timestamp: dateTime
       }
     );
   }
