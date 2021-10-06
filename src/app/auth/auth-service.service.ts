@@ -16,6 +16,8 @@ export class AuthService {
   signUpVerifyTokenAPI = environment.API_PATH+'auth/signUpVerifyToken.php';
   signUpSendTokenAPI = environment.API_PATH+'auth/signUpSendToken.php';
   forgetPasswordAPI = environment.API_PATH+'auth/forgetPassword.php';
+  verifyChangePasswordLinkAPI = environment.API_PATH+'auth/forgetPasswordVerifyLink.php';
+  changePasswordAPI = environment.API_PATH+'auth/changePassword.php';
 
   authTokenName = 'token';
   isLoggedIn = false;
@@ -113,6 +115,26 @@ export class AuthService {
       {
         email: email,
         timestamp: dateTime
+      }
+    );
+  }
+
+  verifyChangePasswordLink(userID: number,token: number): Observable<any>{
+    return this.http.post(
+      this.verifyChangePasswordLinkAPI,
+      {
+        userID: userID,
+        token: token
+      }
+    );
+  }
+
+  changePassword(password: string, userID: number): Observable<any>{
+    return this.http.post(
+      this.changePasswordAPI,
+      {
+        userID: userID,
+        password: password
       }
     );
   }
