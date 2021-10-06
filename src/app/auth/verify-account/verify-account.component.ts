@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth-service.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 declare var $: any;
 
 @Component({
@@ -9,44 +10,47 @@ declare var $: any;
   templateUrl: './verify-account.component.html',
   styleUrls: ['./verify-account.component.css']
 })
-export class VerifyAccountComponent implements OnInit {
+export class VerifyAccountComponent implements OnInit, OnDestroy{
 
   loginForm: FormGroup;
   login = false;
+  userID :number = 0;
+  sub: Subscription;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required]]
+      token: ['', [Validators.required]]
     });
   }
 
+
   ngOnInit(): void {
+    this.sub = this.route.params.subscribe(paramMap => {
+      this.userID = paramMap['id'];
+    });
   }
 
   submitLogin(){
     this.login = true
-    this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(
+    this.authService.signUpVerifyToken(this.userID, this.loginForm.get('token')?.value).subscribe(
       data=>{
         if(data.Success){
-          this.authService.isLoggedIn = true;
-          localStorage.setItem("userID", data.userID);
-          localStorage.setItem(this.authService.authTokenName, data.token);
           $(document).Toasts('create', {
             class: 'bg-success',
-            title: 'Welcome Back',
+            title: 'Account Verified',
             subtitle: 'Just Now',
-            body: 'Log in Successful!<br> Your Account Type is: <b>'+data.userType+'</b>'
+            body: 'Your account was verified. Please login to continue..'
           });
-          console.log("Path is",  data);
-          this.router.navigate([data.redirectTo]).then(r => {});
+          this.router.navigate(['auth', 'login']);
         }else{
           $(document).Toasts('create', {
             class: 'bg-danger',
-            title: 'Login Failed',
+            title: 'Invalid Token',
             subtitle: 'Just Now',
-            body: 'Invalid Email / Password Provided. Please try again.'
+            body: 'Token you provided was not valid. Please try again.'
           });
         }
         this.login = false;
@@ -63,5 +67,8 @@ export class VerifyAccountComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
 }

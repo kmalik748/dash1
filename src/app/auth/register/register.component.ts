@@ -10,6 +10,7 @@ import {
   TooltipLabel,
   CountryISO
 } from "ngx-intl-tel-input";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-register',
@@ -63,7 +64,7 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.router.navigate(['auth', 'verify-account']);
+    // this.router.navigate(['auth', 'verify-account']);
     //Date picker
     $('#reservationdate').datetimepicker({
       format: 'L'
@@ -84,10 +85,15 @@ export class RegisterComponent implements OnInit {
     // console.log(var temp = this.signupForm.get('phone')?.value);
 
       this.authService.signUp(this.signupForm).subscribe(data => {
-        console.log(data);
+        var userID: number = data.userID;
+        console.log(userID);
         this.notificationSuccessRegister();
-        this.router.navigate(['/auth/verify-account']);
-        this.rqstSent = false;
+        this.authService.signUpSendToken(data.userID).subscribe(
+          data=>{
+            this.router.navigate(['auth', 'verify-account', userID]);
+            this.rqstSent = false;
+          }
+        );
       },
         error => {
           $(document).Toasts('create', {
@@ -106,12 +112,8 @@ export class RegisterComponent implements OnInit {
       class: 'bg-success',
       title: 'Account Created!',
       subtitle: 'Just Now',
-      body: 'Account was created successfully, please login to continue...'
+      body: 'Account was created successfully. Please verify the Pin to continue'
     });
-  }
-
-  onCountryChange(event: any){
-    console.log(event);
   }
 
 }

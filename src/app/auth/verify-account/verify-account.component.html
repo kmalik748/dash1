@@ -11,22 +11,22 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="*****" formControlName="email"
-                   [ngClass]="{'is-invalid': loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty),
-                   'is-valid': !loginForm.get('email')?.errors && loginForm.get('email')?.touched}">
+            <input type="number" class="form-control" placeholder="*****" formControlName="token"
+                   [ngClass]="{'is-invalid': loginForm.get('token')?.errors && (loginForm.get('token')?.touched || loginForm.get('token')?.dirty),
+                   'is-valid': !loginForm.get('token')?.errors && loginForm.get('token')?.touched}">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-key"></span>
               </div>
             </div>
-            <span id="exampleInputPassword1-error" class="input_err_msg" *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
-              Please provide a valid Email
+            <span id="exampleInputPassword1-error" class="input_err_msg" *ngIf="loginForm.get('token')?.errors && (loginForm.get('token')?.touched || loginForm.get('token')?.dirty)">
+              Please provide a valid Token
             </span>
           </div>
           <div class="social-auth-links text-center mt-2 mb-3">
             <button type="submit" class="btn btn-block btn-primary" [disabled]="!loginForm.valid || login">
               <span *ngIf="!login"><i class="fas fa-user-check mr-2"></i> Confirm</span>
-              <span *ngIf="login"><i class="fas fa-spinner fa-spin"></i> Logging In....</span>
+              <span *ngIf="login"><i class="fas fa-spinner fa-spin"></i> Verifying....</span>
             </button>
           </div>
         </form>

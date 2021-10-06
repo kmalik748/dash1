@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {ActivatedRoute} from "@angular/router";
-import {AuthService} from "../../auth/auth-service.service";
 declare var $: any;
 
 @Component({

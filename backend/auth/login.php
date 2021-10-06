@@ -10,20 +10,25 @@ $data = json_decode(file_get_contents("php://input"));
 $email = secure_parm($data->email);
 $pass = secure_parm($data->pass);
 
-$s = "SELECT id,first_name,middle_name,last_name,gender,dob,city,state,country,email,phone_number,userType FROM users WHERE email='$email' AND password='$pass'";
+$s = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
 
 $r = mysqli_query($con, $s);
 $data = array();
 
 if(mysqli_num_rows($r)){
-  $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
   $output["Success"] = true;
-  $output["userID"] = $row["id"];
-  $output["userType"] = $row["userType"];
-  $data = $row;
-  if($row["userType"]=="Admin") $output["redirectTo"] = "adminArea";
-  if($row["userType"]=="Patient") $output["redirectTo"] = "patientArea";
-  if($row["userType"]=="Doctor") $output["redirectTo"] = "doctorArea";
+  $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+  if($row["verified"]){
+    $output["verified"] = true;
+    $output["userID"] = $row["id"];
+    $output["userType"] = $row["userType"];
+    $data = $row;
+    if($row["userType"]=="Admin") $output["redirectTo"] = "adminArea";
+    if($row["userType"]=="Patient") $output["redirectTo"] = "patientArea";
+    if($row["userType"]=="Doctor") $output["redirectTo"] = "doctorArea";
+  }else{
+   $output["verified"] = false;
+  }
 }
 
 

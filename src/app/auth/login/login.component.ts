@@ -32,17 +32,26 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(
       data=>{
         if(data.Success){
-          this.authService.isLoggedIn = true;
-          localStorage.setItem("userID", data.userID);
-          localStorage.setItem(this.authService.authTokenName, data.token);
-          $(document).Toasts('create', {
-            class: 'bg-success',
-            title: 'Welcome Back',
-            subtitle: 'Just Now',
-            body: 'Log in Successful!<br> Your Account Type is: <b>'+data.userType+'</b>'
-          });
-          console.log("Path is",  data);
-          this.router.navigate([data.redirectTo]).then(r => {});
+          if(data.verified){
+            this.authService.isLoggedIn = true;
+            localStorage.setItem("userID", data.userID);
+            localStorage.setItem(this.authService.authTokenName, data.token);
+            $(document).Toasts('create', {
+              class: 'bg-success',
+              title: 'Welcome Back',
+              subtitle: 'Just Now',
+              body: 'Log in Successful!<br> Your Account Type is: <b>'+data.userType+'</b>'
+            });
+            console.log("Path is",  data);
+            this.router.navigate([data.redirectTo]).then(r => {});
+          }else{
+            $(document).Toasts('create', {
+              class: 'bg-danger',
+              title: 'Account Verification Required',
+              subtitle: 'Just Now',
+              body: 'Your account is not verified. Please check email and verify to proceed.'
+            });
+          }
         }else{
           $(document).Toasts('create', {
             class: 'bg-danger',

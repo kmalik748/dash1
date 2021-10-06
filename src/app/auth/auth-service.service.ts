@@ -12,8 +12,10 @@ export class AuthService {
   private signUpAPI = environment.API_PATH+'auth/signup.php';
   private emailAPI = environment.API_PATH+'auth/checkEmail.php';
   private loginAPI = environment.API_PATH+'auth/login.php';
-  private encodeAPI = environment.API_PATH+'auth/encode.php';
   validate_sessionAPI = environment.API_PATH+'auth/validate_session.php';
+  signUpVerifyTokenAPI = environment.API_PATH+'auth/signUpVerifyToken.php';
+  signUpSendTokenAPI = environment.API_PATH+'auth/signUpSendToken.php';
+
   authTokenName = 'token';
   isLoggedIn = false;
   userName = "";
@@ -72,5 +74,30 @@ export class AuthService {
     this.isLoggedIn = false;
     localStorage.removeItem(this.authTokenName);
     this.router.navigate(['auth']);
+  }
+
+  signUpSendToken(userID: number): Observable<any>{
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    return this.http.post(
+      this.signUpSendTokenAPI,
+      {
+        userID: userID,
+        timestamp: dateTime
+      }
+    );
+  }
+
+  signUpVerifyToken(userID: number, token: number): Observable<any>{
+    return this.http.post(
+      this.signUpVerifyTokenAPI,
+      {
+        userID: userID,
+        token: token
+      }
+    );
   }
 }
