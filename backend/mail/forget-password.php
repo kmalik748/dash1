@@ -1,5 +1,4 @@
 <?php
-
 require 'main.php';
 
 $to = $_GET["to"];
@@ -96,4 +95,12 @@ $msg = '
 </body>
 </html>
 ';
+
+
+$headers = "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+mail($to, $subject, $msg, $headers);
+
+//require 'mail.php';
 ?>

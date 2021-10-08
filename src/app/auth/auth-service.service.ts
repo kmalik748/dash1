@@ -18,7 +18,7 @@ export class AuthService {
   forgetPasswordAPI = environment.API_PATH+'auth/forgetPassword.php';
   verifyChangePasswordLinkAPI = environment.API_PATH+'auth/forgetPasswordVerifyLink.php';
   changePasswordAPI = environment.API_PATH+'auth/changePassword.php';
-  welcomeEmailAPI = environment.API_PATH+'mail/welcome.php';
+  welcomeEmailAPI = environment.MAIL_PATH+'welcome.php';
 
   authTokenName = 'token';
   isLoggedIn = false;
