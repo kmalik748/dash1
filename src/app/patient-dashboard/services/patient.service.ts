@@ -33,10 +33,13 @@ export class PatientService {
     );
   }
 
-  getDocProfiles(qry: String): Observable<any>{
+  getDocProfiles(qry: String, docName: String): Observable<any>{
     return  this.http.post<any>(
       this.getDocProfilesAPI,
-      {query: qry}
+      {
+        query: qry,
+        docName: docName
+      }
     );
   }
 

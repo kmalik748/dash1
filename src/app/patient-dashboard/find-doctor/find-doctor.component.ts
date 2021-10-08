@@ -18,6 +18,7 @@ declare var $: any;
 export class FindDoctorComponent implements OnInit {
 
   query = "";
+  searchDocName = "";
   stepper: any;
   loading = false;
   doctorsFound = 0;
@@ -81,7 +82,7 @@ export class FindDoctorComponent implements OnInit {
   getDocProfiles(): void{
     this.loading = true;
     this.stepNext();
-    this.patientService.getDocProfiles(this.query).subscribe(
+    this.patientService.getDocProfiles(this.query, this.searchDocName).subscribe(
       data=>{
         console.log(data);
         this.doctorsList = data.Doctors;

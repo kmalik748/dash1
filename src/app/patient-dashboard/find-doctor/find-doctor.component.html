@@ -71,6 +71,12 @@
                               <input type="text" class="form-control" id="exampleInputEmail1" placeholder="I'm suffering from insomnia" [(ngModel)]="query" [ngModelOptions]="{standalone: true}">
                             </div>
                           </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Or Search by Doctor</label>
+                              <input type="text" class="form-control" placeholder="Doctor Name" [(ngModel)]="searchDocName" [ngModelOptions]="{standalone: true}">
+                            </div>
+                          </div>
                           <div class="col-md-8 pt-5">
                             <button class="btn btn-primary w-100" (click)="getDocProfiles() ">
                               Next
