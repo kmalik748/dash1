@@ -90,6 +90,7 @@ export class RegisterComponent implements OnInit {
         this.notificationSuccessRegister();
         this.authService.signUpSendToken(data.userID).subscribe(
           data=>{
+            this.authService.sendWelcomeEmail(this.signupForm.get('email')?.value, data.token).subscribe();
             this.router.navigate(['auth', 'verify-account', userID]);
             this.rqstSent = false;
           }

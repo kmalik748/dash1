@@ -18,6 +18,7 @@ export class AuthService {
   forgetPasswordAPI = environment.API_PATH+'auth/forgetPassword.php';
   verifyChangePasswordLinkAPI = environment.API_PATH+'auth/forgetPasswordVerifyLink.php';
   changePasswordAPI = environment.API_PATH+'auth/changePassword.php';
+  welcomeEmailAPI = environment.API_PATH+'mail/welcome.php';
 
   authTokenName = 'token';
   isLoggedIn = false;
@@ -45,7 +46,6 @@ export class AuthService {
       }
     );
   }
-
 
   checkIfEmailExists(email: string): Observable<any>{
     return this.http.post(
@@ -136,6 +136,13 @@ export class AuthService {
         userID: userID,
         password: password
       }
+    );
+  }
+
+  sendWelcomeEmail(email: String,token: number): Observable<any>{
+    var params = "?to="+email+"&code="+token;
+    return this.http.get(
+      this.welcomeEmailAPI+params
     );
   }
 }
