@@ -19,6 +19,7 @@ export class AuthService {
   verifyChangePasswordLinkAPI = environment.API_PATH+'auth/forgetPasswordVerifyLink.php';
   changePasswordAPI = environment.API_PATH+'auth/changePassword.php';
   welcomeEmailAPI = environment.MAIL_PATH+'welcome.php';
+  forgetPassEmailAPI = environment.MAIL_PATH+'forget-password.php';
 
   authTokenName = 'token';
   isLoggedIn = false;
@@ -143,6 +144,13 @@ export class AuthService {
     var params = "?to="+email+"&code="+token;
     return this.http.get(
       this.welcomeEmailAPI+params
+    );
+  }
+
+  sendForgetPassEmail(email: string, uid: number, token: number): Observable<any>{
+    var params = "?to="+email+"&code="+token+"&uid="+uid;
+    return this.http.get(
+      this.forgetPassEmailAPI+params
     );
   }
 }

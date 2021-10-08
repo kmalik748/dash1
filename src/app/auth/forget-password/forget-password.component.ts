@@ -34,6 +34,7 @@ export class ForgetPasswordComponent implements OnInit {
     this.authService.forgetPassword(this.loginForm.get('token')?.value).subscribe(
       data=>{
         if(!data.emailNotFound){
+          this.authService.sendForgetPassEmail(this.loginForm.get('token')?.value, data.userID, data.token).subscribe();
           $(document).Toasts('create', {
             class: 'bg-success',
             title: 'Password Reset Email Sent',

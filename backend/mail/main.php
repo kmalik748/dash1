@@ -7,4 +7,4 @@ header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 
 
-$link = "http://localhost:4200/";
+$link = "https://aivizo.com/";

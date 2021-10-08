@@ -16,6 +16,8 @@ $res = mysqli_query($con, $s);
 if(mysqli_num_rows($res)){
   $row = mysqli_fetch_array($res);
   $userID = $row["id"];
+  $output["userID"] = $userID;
+  $output["token"] = $token;
   $output["emailNotFound"] = false;
   $s = "INSERT INTO signupemailtoken (userID, token, type, date_time) VALUES ($userID, '$token', 'passwordReset', '$timestamp')";
   if(mysqli_query($con, $s)){
