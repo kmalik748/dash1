@@ -167,6 +167,22 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" formControlName="acceptTerms">
+                      <label class="form-check-label">By checking this box I acknowledge that I have reviewed the
+                        <a target="_blank" routerLink="/TermsOfServices">Terms of Service</a>
+                        and agree with it</label>
+                      <span class="input_err_msg"
+                            *ngIf="signupForm.get('acceptTerms')?.errors">
+                      Please accept the Terms of Services.
+                    </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="social-auth-links text-center">
                 <app-loader *ngIf="rqstSent"></app-loader>
                 <button type="submit" class="btn btn-block btn-primary" [disabled]="!signupForm.valid"

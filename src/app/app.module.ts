@@ -14,6 +14,7 @@ import { MeetingLayoutComponent } from './layouts/meeting-layout/meeting-layout.
 import { HomepageComponent } from './layouts/homepage/homepage.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { Page404Component } from './layouts/page404/page404.component';
+import { TermsServicesComponent } from './layouts/terms-services/terms-services.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { Page404Component } from './layouts/page404/page404.component';
     DoctorDashboardLayoutComponent,
     MeetingLayoutComponent,
     HomepageComponent,
-    Page404Component
+    Page404Component,
+    TermsServicesComponent
   ],
   imports: [
     BrowserModule,

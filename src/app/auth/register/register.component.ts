@@ -44,7 +44,8 @@ export class RegisterComponent implements OnInit {
       userType: [''],
       email: ['', [Validators.required, Validators.email], this.isEmailUnique.bind(this)],
       password: ['', Validators.required],
-      confirm_pass: ['', Validators.required]
+      confirm_pass: ['', Validators.required],
+      acceptTerms: [false, Validators.requiredTrue]
     }, {
       validator: MustMatch('password', 'confirm_pass')
     });

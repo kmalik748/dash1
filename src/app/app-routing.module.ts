@@ -8,6 +8,7 @@ import {DoctorDashboardLayoutComponent} from "./layouts/doctor-dashboard-layout/
 import {MeetingLayoutComponent} from "./layouts/meeting-layout/meeting-layout.component";
 import {HomepageComponent} from "./layouts/homepage/homepage.component";
 import {Page404Component} from "./layouts/page404/page404.component";
+import {TermsServicesComponent} from "./layouts/terms-services/terms-services.component";
 
 const routes: Routes = [
   // { path: '', pathMatch: 'full', redirectTo: 'auth' },
@@ -42,6 +43,10 @@ const routes: Routes = [
     component: MeetingLayoutComponent,
     canActivateChild: [AuthGuard],
     loadChildren: () => import('./meeting-area/meeting.module').then(m => m.MeetingModule)
+  },
+  {
+    path: 'TermsOfServices',
+    component: TermsServicesComponent
   },
 
 
