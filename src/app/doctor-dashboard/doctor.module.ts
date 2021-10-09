@@ -10,11 +10,22 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { DocAppointmentsComponent } from './doc-appointments/doc-appointments.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { DoctorCalenderComponent } from './doctor-calender/doctor-calender.component';
+
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+// import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin
+]);
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile-settings', component: ProfileSettingsComponent },
   { path: 'appointments', component: DocAppointmentsComponent },
+  { path: 'calender', component: DoctorCalenderComponent },
   { path: 'prescription/:id', component: PrescriptionComponent }
 ];
 
@@ -24,7 +35,8 @@ export const routes: Routes = [
     HomeComponent,
     ProfileSettingsComponent,
     DocAppointmentsComponent,
-    PrescriptionComponent
+    PrescriptionComponent,
+    DoctorCalenderComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +44,8 @@ export const routes: Routes = [
     SharedModule,
     ReactiveFormsModule,
     CKEditorModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   exports: [
     RouterModule

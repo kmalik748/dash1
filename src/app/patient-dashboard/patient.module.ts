@@ -8,11 +8,22 @@ import { FindDoctorComponent } from './find-doctor/find-doctor.component';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 import { DoctorDetailsComponent } from './find-doctor/doctor-details/doctor-details.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
+import { PatientCalenderComponent } from './patient-calender/patient-calender.component';
+
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+// import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin
+]);
 
 export const routes: Routes = [
   { path: '', component: PatientHomeComponent },
   { path: 'find-doctor', component: FindDoctorComponent },
   { path: 'my-appointments', component: MyAppointmentsComponent },
+  { path: 'calender', component: PatientCalenderComponent },
   { path: 'prescription/:id', component: PrescriptionComponent }
 ];
 
@@ -22,14 +33,16 @@ export const routes: Routes = [
     FindDoctorComponent,
     MyAppointmentsComponent,
     DoctorDetailsComponent,
-    PrescriptionComponent
+    PrescriptionComponent,
+    PatientCalenderComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   exports: [
     RouterModule

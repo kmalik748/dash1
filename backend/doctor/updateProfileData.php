@@ -42,10 +42,12 @@ try {
   else
   {
     $q = "INSERT INTO doctors (doctor_id, specialty, qualification, fees, tags, startTime, endTime) VALUES
-        ($uid, '$speciality', '$qualification', $fees, '$tags', '$time1', '$timestamp1')";
+        ($uid, '$speciality', '$qualification', $fees, '$tags', '$time1', '$time2')";
   }
   if(mysqli_query($con, $q)){
     $output["Success"] = true;
+  }else{
+    $output["err"] = mysqli_error($con);
   }
 
 

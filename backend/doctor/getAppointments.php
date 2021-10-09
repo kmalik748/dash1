@@ -27,6 +27,7 @@ if(mysqli_num_rows($r)){
 //    $appointment["time"] = $row["apnt_time"];
     $appointment["time"] =  date_format(date_create($row["apnt_time"])," h:i a");
     $appointment["date"] = date_format(date_create($row["apnt_date"]),"d M, Y");
+    $appointment["date_standard"] = $row["apnt_date"];
 //    $appointment["date"] = $row["apnt_date"];
     $appointment["timestamp"] =
     $appointment["timestamp"] = date_format(date_create($row["datetime"]),"d M, Y h:i a");
