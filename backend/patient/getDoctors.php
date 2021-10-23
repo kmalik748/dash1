@@ -21,10 +21,10 @@ $doctor = array();
 $output["Doctors"] = array();
 $constructs ="SELECT * FROM doctors WHERE  ($construct) ";
 $run = mysqli_query($con, $constructs);
-$output["TotalRows"] = mysqli_num_rows($run);
 
 
 if(!empty($speciality) && $speciality!=="") {
+  $output["TotalRows"] = mysqli_num_rows($run);
   if(mysqli_num_rows($run)){
     $output["Success"] = true;
     while($row = mysqli_fetch_array($run, MYSQLI_ASSOC)){
@@ -64,25 +64,25 @@ if(!empty($speciality) && $speciality!=="") {
 
 
 if(!empty($docName) && $docName!==""){
-  $records = 0;
-  $construct = " CONCAT(first_name,' ',middle_name,' ',last_name) LIKE '%$docName%' ";
+  $output = array();
+  $construct = "( CONCAT(first_name,' ',middle_name,' ',last_name) LIKE '%$docName%' AND userType='Doctor' )";
 
   $search_exploded = explode (" ", $docName);
   foreach($search_exploded as $search_each)
   {
-    $construct .=" OR CONCAT(first_name,' ',middle_name,' ',last_name) LIKE '%$search_each%'  ";
+    $construct .=" OR ( CONCAT(first_name,' ',middle_name,' ',last_name) LIKE '%$search_each%' AND userType='Doctor'  )";
   }
 
 
   $constructs ="SELECT * FROM users WHERE $construct";
-  $output["d"] = $constructs;
+  $output["byNameQry"] = $constructs;
   $run = mysqli_query($con, $constructs);
   $numRows = mysqli_num_rows($run);
-  $output["d1"] = $numRows;
 
 
   if($numRows>0){
-    $records++;
+    $results = 0;
+    $output["Doctors"] = array();
     $output["Success"] = true;
     while($row = mysqli_fetch_array($run, MYSQLI_ASSOC)){
       $id = $row["id"];
@@ -103,6 +103,7 @@ if(!empty($docName) && $docName!==""){
           }
         }
 
+        $doctor = array();
         $doctor["days"] = $days;
         $doctor["picture"] = "https://picsum.photos/170/170";
         $doctor["specialty"] = $row["specialty"];
@@ -112,23 +113,28 @@ if(!empty($docName) && $docName!==""){
         $doctor["startDate"] = $row["startTime"];
         $doctor["endDate"] = $row["endTime"];
 
+//        $output["116"] = $doctor;
+
+
         $doctor["startTime"] = date('g:i A', strtotime($row["startTime"]));
         $doctor["endTime"] = date('g:i A', strtotime($row["endTime"]));
         $qry ="SELECT * FROM users WHERE id=$id";
-//    $doctor["qry"] = $qry;
+    $doctor["qry13"] = $qry;
         $res = mysqli_query($con, $qry);
         $row1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
         $doctor["id"] = $row1["id"];
         $doctor["fullName"] = $row1["first_name"].' '.$row1["middle_name"].' '.$row1["last_name"];
         array_push($output["Doctors"], $doctor);
+        $results++;
       }
     }
+
+    $output["TotalRows"] = $results;
   }
-  $output["TotalRows"] = $records;
 }
 
 
-    $output["Doctors"] = array_unique($output["Doctors"], SORT_REGULAR);
+//$output["Doctors"] = array_unique($output["Doctors"], SORT_REGULAR);
 
 
 echo json_encode($output);

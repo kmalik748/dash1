@@ -508,3 +508,12 @@ section.testimonial{
   color: #f5ae10;
   margin-left: 5px;
 }
+
+
+ul.ourmission{
+  font-size: 20px;
+  text-align: justify;
+}
+ul.ourmission li{
+  margin-bottom: 13px;
+}
