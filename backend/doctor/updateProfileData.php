@@ -15,8 +15,9 @@ try {
   $speciality = secure_parm($data->speciality);
   $qualification = secure_parm($data->qualification);
   $fees = secure_parm($data->fees);
-  $availability = secure_parm($data->availability);
-  $tags = json_encode(secure_parm($data->tags));
+  $availability = $data->availability;
+  $tags = json_encode($data->tags);
+  $profileData = $data->profileData;
   $token = secure_parm($data->token);
 
   $decoded = JWT::decode($token, SECRET_KEY, array(ALGORITHM));
@@ -37,7 +38,7 @@ try {
 
   if( mysqli_num_rows($result) > 0) {
     $q = "UPDATE doctors SET specialty='$speciality', qualification='$qualification', fees=$fees,
-        tags='$tags', startTime='$time1', endTime='$time2', availability='$availability' WHERE doctor_id=$uid";
+        tags='$tags', startTime='$time1', endTime='$time2', availability='$availability', profileData='$profileData' WHERE doctor_id=$uid";
   }
   else
   {

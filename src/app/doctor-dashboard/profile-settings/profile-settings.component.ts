@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {find, forEach, pull} from "lodash";
 import {DoctorsService} from "../services/doctors.service";
 import {AuthService} from "../../auth/auth-service.service";
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 declare var $: any;
 
 @Component({
@@ -19,6 +20,12 @@ export class ProfileSettingsComponent implements OnInit {
   form: FormGroup;
   loading=false;
   docDetails: any;
+  public Editor = ClassicEditor;
+  public model = {
+    editorData: '<p>Profile Details Here</p>'
+  }
+  specialities = ["Family Medicine", "Internal Medicine", "Pediatrics", "Dermatology", "Psychiatry"];
+  // selectedSpeciality = "";
 
   constructor(private fb: FormBuilder, private docService: DoctorsService, private authService: AuthService) {
 
@@ -28,15 +35,17 @@ export class ProfileSettingsComponent implements OnInit {
       availability: [''],
       fees: ['', Validators.required],
       tag: [undefined],
+      profileData: [undefined],
     });
 
     this.docDetails = this.docService.getDocDetails(this.authService.getToken()).subscribe(
       (data)=>{
-
+        // this.selectedSpeciality = data.data.specialty;
         this.form.patchValue({
           speciality: data.data.specialty,
           qualification: data.data.qualification,
-          fees: data.data.fees
+          fees: data.data.fees,
+          profileData: data.data.profileData
         });
 
         var apiTags =JSON.parse(data.data.tags);
@@ -105,8 +114,9 @@ export class ProfileSettingsComponent implements OnInit {
   submitRequest(): void{
     this.loading = true;
     console.log(this.tags);
-    this.docService.updateData(this.form, this.availability.nativeElement.value, this.tags).subscribe(
+    this.docService.updateData(this.form, this.availability.nativeElement.value, this.tags, this.model.editorData).subscribe(
       data=>{
+        console.log(this.model.editorData);
         console.log(data);
         if(data.Success){
           this.loading = false;

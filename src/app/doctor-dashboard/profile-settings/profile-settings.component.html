@@ -29,9 +29,15 @@
           <form [formGroup]="form">
             <div class="row">
               <div class="col-md-6">
+<!--                <div class="form-group">-->
+<!--                  <label>Speciality</label>-->
+<!--                  <input type="text" class="form-control" placeholder="Skin Specialist" formControlName="speciality">-->
+<!--                </div>-->
                 <div class="form-group">
-                  <label>Speciality</label>
-                  <input type="text" class="form-control" placeholder="Skin Specialist" formControlName="speciality">
+                  <label for="sel1">Select list:</label>
+                  <select class="form-control" id="sel1" formControlName="speciality">
+                    <option *ngFor="let option of specialities" value="{{option}}">{{option}}</option>
+                  </select>
                 </div>
               </div>
               <div class="col-md-6">
@@ -57,7 +63,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Fees</label>
+                  <label>Years of Qualification</label>
                   <input type="number" class="form-control" placeholder="Fees" formControlName="fees">
                 </div>
               </div>
@@ -76,6 +82,13 @@
                   class="input-tag"
                   (keyup)="onKeyUp($event)"
                   formControlName="tag">
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <label class="ml-3">Profile Details</label>
+              <div class="col-md-12">
+                <ckeditor formControlName="profileData" [editor]="Editor" [(ngModel)]="model.editorData"></ckeditor>
               </div>
             </div>
 

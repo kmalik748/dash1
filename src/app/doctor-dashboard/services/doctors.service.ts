@@ -20,7 +20,7 @@ export class DoctorsService {
   constructor(private http: HttpClient,
               private authService: AuthService) { }
 
-  updateData(form: FormGroup, availability: string, tags: String[]): Observable<any>{
+  updateData(form: FormGroup, availability: string, tags: String[], profileDetails: String): Observable<any>{
     var arrayToString = JSON.stringify(Object.assign({}, tags));  // convert array to string
     var tags_json = JSON.parse(arrayToString);  // convert string to json object
     return this.http.post(
@@ -31,6 +31,7 @@ export class DoctorsService {
         fees: form.get('fees')?.value,
         availability: availability,
         tags: tags_json,
+        profileData: profileDetails,
         token: this.authService.getToken()
       }
     );
