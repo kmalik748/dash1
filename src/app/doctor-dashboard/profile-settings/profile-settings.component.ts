@@ -25,7 +25,7 @@ export class ProfileSettingsComponent implements OnInit {
     editorData: '<p>Profile Details Here</p>'
   }
   specialities = ["Family Medicine", "Internal Medicine", "Pediatrics", "Dermatology", "Psychiatry"];
-  // selectedSpeciality = "";
+  selectedSpeciality = ""
 
   constructor(private fb: FormBuilder, private docService: DoctorsService, private authService: AuthService) {
 
@@ -40,13 +40,14 @@ export class ProfileSettingsComponent implements OnInit {
 
     this.docDetails = this.docService.getDocDetails(this.authService.getToken()).subscribe(
       (data)=>{
-        // this.selectedSpeciality = data.data.specialty;
+        this.selectedSpeciality = data.data.specialty;
         this.form.patchValue({
           speciality: data.data.specialty,
           qualification: data.data.qualification,
           fees: data.data.fees,
           profileData: data.data.profileData
         });
+        console.log(data.data.specialty);
 
         var apiTags =JSON.parse(data.data.tags);
 ;

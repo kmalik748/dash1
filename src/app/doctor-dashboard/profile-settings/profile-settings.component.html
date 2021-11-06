@@ -35,8 +35,8 @@
 <!--                </div>-->
                 <div class="form-group">
                   <label for="sel1">Select list:</label>
-                  <select class="form-control" id="sel1" formControlName="speciality">
-                    <option *ngFor="let option of specialities" value="{{option}}">{{option}}</option>
+                  <select class="form-control" id="sel1" formControlName="speciality" *ngIf="selectedSpeciality!=''">
+                    <option *ngFor="let option of specialities" value="{{option}}" [selected]="option==selectedSpeciality">{{option}}</option>
                   </select>
                 </div>
               </div>

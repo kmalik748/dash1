@@ -2,6 +2,7 @@
 require '../app.php';
 $output = array("Success"=>false);
 
+
 $data = json_decode(file_get_contents("php://input"));
 $speciality = secure_parm($data->query);
 $docName = secure_parm($data->docName);

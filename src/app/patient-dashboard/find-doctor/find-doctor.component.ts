@@ -56,6 +56,7 @@ export class FindDoctorComponent implements OnInit {
   }
 
   stepNext(): void{
+    if(this.query=="") this.query = this.searchDocName;
     this.stepper.next()
   }
   stepBack(): void{
