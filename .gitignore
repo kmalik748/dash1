@@ -47,3 +47,5 @@ testem.log
 Thumbs.db
 
 #customFolders
+src/assets/profilePics
+src/assets/profilePics/
