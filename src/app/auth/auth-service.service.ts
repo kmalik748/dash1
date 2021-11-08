@@ -20,13 +20,23 @@ export class AuthService {
   changePasswordAPI = environment.API_PATH+'auth/changePassword.php';
   welcomeEmailAPI = environment.MAIL_PATH+'welcome.php';
   forgetPassEmailAPI = environment.MAIL_PATH+'forget-password.php';
+  getImageAPI = environment.API_PATH+'shared/getImage.php';
 
   authTokenName = 'token';
   isLoggedIn = false;
   userName = "";
+  userPic = "";
 
   constructor(private http: HttpClient,
-              private router: Router) { }
+              private router: Router) {
+    this.http.post(
+      this.getImageAPI,
+      {key: localStorage.getItem(this.authTokenName)}
+    )
+      .subscribe(res => {
+        this.userPic = res.picture;
+      });
+  }
 
   signUp(data: FormGroup): Observable<any> {
     return this.http.post(

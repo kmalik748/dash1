@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import {environment} from "../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../../auth/auth-service.service";
-import {DoctorDashboardLayoutComponent} from "../../layouts/doctor-dashboard-layout/doctor-dashboard-layout.component";
+import {PatientDashboardLayoutComponent} from "../../layouts/patient-dashboard-layout/patient-dashboard-layout.component";
 declare var $: any;
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-patient-profile',
+  templateUrl: './patient-profile.component.html',
+  styleUrls: ['./patient-profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class PatientProfileComponent implements OnInit {
 
 
   imageSrc:any = '';
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              public layout: DoctorDashboardLayoutComponent) { }
+              public layout: PatientDashboardLayoutComponent) { }
 
   ngOnInit(): void {
 
@@ -56,4 +56,5 @@ export class ProfileComponent implements OnInit {
         });
       })
   }
+
 }

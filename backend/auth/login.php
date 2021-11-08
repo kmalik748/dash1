@@ -22,6 +22,7 @@ if(mysqli_num_rows($r)){
     $output["verified"] = true;
     $output["userID"] = $row["id"];
     $output["userType"] = $row["userType"];
+    $output["pic"] = $row["pic"];
     $data = $row;
     if($row["userType"]=="Admin") $output["redirectTo"] = "adminArea";
     if($row["userType"]=="Patient") $output["redirectTo"] = "patientArea";

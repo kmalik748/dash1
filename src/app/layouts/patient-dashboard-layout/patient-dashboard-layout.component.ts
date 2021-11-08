@@ -9,6 +9,7 @@ import {AuthService} from "../../auth/auth-service.service";
 export class PatientDashboardLayoutComponent implements OnInit {
 
   currentUser = "";
+  userImg = "pic.png";
 
   constructor(private service: AuthService) {
   }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth-service.service";
 import {Router} from "@angular/router";
+import {PatientDashboardLayoutComponent} from "../../layouts/patient-dashboard-layout/patient-dashboard-layout.component";
+import {DoctorDashboardLayoutComponent} from "../../layouts/doctor-dashboard-layout/doctor-dashboard-layout.component";
 declare var $: any;
 
 @Component({
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
             this.authService.isLoggedIn = true;
             localStorage.setItem("userID", data.userID);
             localStorage.setItem(this.authService.authTokenName, data.token);
+            this.authService.userPic = data.pic;
             $(document).Toasts('create', {
               class: 'bg-success',
               title: 'Welcome Back',

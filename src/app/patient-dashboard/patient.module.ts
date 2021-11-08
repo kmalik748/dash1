@@ -11,8 +11,8 @@ import { PrescriptionComponent } from './prescription/prescription.component';
 import { PatientCalenderComponent } from './patient-calender/patient-calender.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-// import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -24,7 +24,8 @@ export const routes: Routes = [
   { path: 'find-doctor', component: FindDoctorComponent },
   { path: 'my-appointments', component: MyAppointmentsComponent },
   { path: 'calender', component: PatientCalenderComponent },
-  { path: 'prescription/:id', component: PrescriptionComponent }
+  { path: 'prescription/:id', component: PrescriptionComponent },
+  { path: 'myProfile', component: PatientProfileComponent }
 ];
 
 @NgModule({
@@ -34,7 +35,8 @@ export const routes: Routes = [
     MyAppointmentsComponent,
     DoctorDetailsComponent,
     PrescriptionComponent,
-    PatientCalenderComponent
+    PatientCalenderComponent,
+    PatientProfileComponent
   ],
   imports: [
     CommonModule,
