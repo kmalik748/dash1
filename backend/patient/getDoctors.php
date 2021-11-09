@@ -42,7 +42,6 @@ if(!empty($speciality) && $speciality!=="") {
       }
 
       $doctor["days"] = $days;
-      $doctor["picture"] = "https://picsum.photos/170/170";
       $doctor["specialty"] = $row["specialty"];
       $doctor["qualification"] = $row["qualification"];
       $doctor["fees"] = $row["fees"];
@@ -58,6 +57,7 @@ if(!empty($speciality) && $speciality!=="") {
       $row1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
       $doctor["id"] = $row1["id"];
       $doctor["fullName"] = $row1["first_name"].' '.$row1["middle_name"].' '.$row1["last_name"];
+      $doctor["picture"] = "https://aivizo.com/assets/profilePics/".$row1["pic"];
       array_push($output["Doctors"], $doctor);
     }
   }
@@ -106,7 +106,7 @@ if(!empty($docName) && $docName!==""){
 
         $doctor = array();
         $doctor["days"] = $days;
-        $doctor["picture"] = "https://picsum.photos/170/170";
+        //$doctor["picture"] = "https://picsum.photos/170/170";
         $doctor["specialty"] = $row["specialty"];
         $doctor["qualification"] = $row["qualification"];
         $doctor["fees"] = $row["fees"];
@@ -125,6 +125,7 @@ if(!empty($docName) && $docName!==""){
         $row1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
         $doctor["id"] = $row1["id"];
         $doctor["fullName"] = $row1["first_name"].' '.$row1["middle_name"].' '.$row1["last_name"];
+      $doctor["picture"] = "https://aivizo.com/assets/profilePics/".$row1["pic"];
         array_push($output["Doctors"], $doctor);
         $results++;
       }
