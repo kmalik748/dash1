@@ -12,6 +12,7 @@ export class PatientService {
   private getDocProfilesAPI = environment.API_PATH+'patient/getDoctors.php';
   private getDocTimingsAPI = environment.API_PATH+'patient/getDocTimings.php';
   private getAppointmentsAPI = environment.API_PATH+'patient/getAppointments.php';
+  private getDashboardStatsAPI = environment.API_PATH+'patient/getDashboardStats.php';
 
   constructor(private http: HttpClient) { }
 
@@ -56,4 +57,12 @@ export class PatientService {
       {patientID: patientID}
     );
   }
+
+  getDashboardStats(token: string | null): Observable<any>{
+    return  this.http.post<any>(
+      this.getDashboardStatsAPI,
+      {token: token}
+    );
+  }
+
 }
