@@ -45,7 +45,10 @@ if(!empty($speciality) && $speciality!=="") {
       $doctor["specialty"] = $row["specialty"];
       $doctor["qualification"] = $row["qualification"];
       $doctor["fees"] = $row["fees"];
-      $doctor["tags"] = $row["tags"];
+      $tag =  $row["tags"];
+      str_replace('"', "", $tag);
+      str_replace(['"',"'"], "", $tag);
+      $doctor["tags"] = json_decode($tag, True);
       $doctor["startDate"] = $row["startTime"];
       $doctor["endDate"] = $row["endTime"];
 
